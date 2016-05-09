@@ -1,0 +1,6 @@
+framework module TLTranstionLib_swift {
+  umbrella header "TLTranstionLib-swift-umbrella.h"
+
+  export *
+  module * { export * }
+}

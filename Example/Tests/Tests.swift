@@ -2,7 +2,7 @@
 
 import Quick
 import Nimble
-import TLTranstionLib-swift
+//import TLTranstionLib-swift
 
 class TableOfContentsSpec: QuickSpec {
     override func spec() {
