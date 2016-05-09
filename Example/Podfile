@@ -1,0 +1,14 @@
+use_frameworks!
+
+target 'TLTranstionLib-swift_Example', :exclusive => true do
+  pod 'TLTranstionLib-swift', :path => '../'
+end
+
+target 'TLTranstionLib-swift_Tests', :exclusive => true do
+  pod 'TLTranstionLib-swift', :path => '../'
+
+  pod 'Quick', '~> 0.8'
+  pod 'Nimble', '~> 3.0'
+  pod 'FBSnapshotTestCase'
+  pod 'Nimble-Snapshots'
+end
