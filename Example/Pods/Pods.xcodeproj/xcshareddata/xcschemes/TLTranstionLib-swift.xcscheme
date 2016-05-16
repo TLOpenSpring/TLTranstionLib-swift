@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '1179A1C178011A98D12931AE'
+               BlueprintIdentifier = '8502D555799B738ACAE7E4FB'
                BlueprintName = 'TLTranstionLib-swift'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'TLTranstionLib_swift.framework'>
