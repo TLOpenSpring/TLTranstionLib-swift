@@ -17,25 +17,21 @@ public class TLTransitionProxy:NSProxy,UINavigationControllerDelegate {
         /// 动画的基类
     public var baseAnimator:TLBaseAnimator?
     
-    private var tlFadeAnimator:TLFadeAnimator?{
-        get{
-           return TLFadeAnimator()
-        }
-        set(newValue){
-          self.tlFadeAnimator = newValue
-        }
-    }
+    private var tlFadeAnimator:TLFadeAnimator!
+    private var tlFromleftAnimator:TLFromLeftAnimator!
+    private var tlCardAnimator:TLCardAnimator!
+    private var tlCoverVerticalAnimator:TLCoverVerticalAnimator!
+    private var tlCubeAnimator:TLCubeAnimator!
+    private var tlDivideAnimator:TLDivideAnimator!
+    private var tlExplodeAnimator:TLExplodeAnimator!
+    private var tlFlipAnimator:TLFlipAnimator!
+    private var tlFlipOverAnimator:TLFlipOverAnimator!
+    private var tlFoldAnimator:TLFoldAnimator!
+    private var tlFromTopAnimator:TLFromTopAnimator!
+    private var tlGeoAnimator:TLGeoAnimator!
+    private var tlTurnAnimator:TLTurnAnimator!
+    private var tlPortalAnimator:TLPortalAnimator!
     
-    private var tlFromleftAnimator:TLFromLeftAnimator?{
-        
-        get {
-         return TLFromLeftAnimator()
-        }
-        
-        set {
-          self.tlFromleftAnimator = newValue
-        }
-    }
   
         /// 动画执行的时间
     public var tlDuration:NSTimeInterval?
@@ -50,13 +46,16 @@ public class TLTransitionProxy:NSProxy,UINavigationControllerDelegate {
     func TL_animatorStyle(style:TLAnmimatorStyle) -> TLBaseAnimator {
         var animator:TLBaseAnimator = TLBaseAnimator()
         switch style {
- 
+            
+        case .System:
+            break;
+    
         case .FromLeft:
-            animator = self.tlFromleftAnimator!
+            animator = self.crateFromleftAnimator()
             break
             
         case .Fade:
-            animator = self.tlFadeAnimator!
+            animator = self.createFadeAnimator()
             break;
         default:
             break;
@@ -70,7 +69,56 @@ public class TLTransitionProxy:NSProxy,UINavigationControllerDelegate {
     
     }
    
+    //MARK: - 创建动画的工厂方法
+    func crateFromleftAnimator() -> TLFromLeftAnimator {
+        if(tlFromleftAnimator == nil){
+         tlFromleftAnimator = TLFromLeftAnimator()
+        }
+        
+        return tlFromleftAnimator!
+    }
     
+    func createFadeAnimator() -> TLFadeAnimator {
+        if(tlFadeAnimator == nil){
+            tlFadeAnimator = TLFadeAnimator();
+        }
+        return tlFadeAnimator!
+    }
+    
+    func createCardAnimator() -> TLCardAnimator {
+        if(tlCardAnimator == nil){
+          tlCardAnimator = TLCardAnimator()
+        }
+        
+        return tlCardAnimator
+    }
+    
+    func createCoverVerticalAnimator() -> TLCoverVerticalAnimator {
+        if(tlCoverVerticalAnimator == nil){
+          tlCoverVerticalAnimator = TLCoverVerticalAnimator()
+        }
+        return tlCoverVerticalAnimator
+    }
+    
+    func createCubeAnimator() -> TLCubeAnimator {
+        if(tlCubeAnimator == nil) {
+         tlCubeAnimator = TLCubeAnimator()
+        }
+        return tlCubeAnimator
+    }
+    
+    func createDivideAnimator() -> TLDivideAnimator {
+        if(tlDivideAnimator == nil){
+         tlDivideAnimator = TLDivideAnimator()
+        }
+        return tlDivideAnimator
+    }
+    func createExplodeAnimator() -> TLExplodeAnimator {
+        if(tlExplodeAnimator == nil){
+         tlExplodeAnimator = TLExplodeAnimator()
+        }
+        return tlExplodeAnimator
+    }
 
  
     

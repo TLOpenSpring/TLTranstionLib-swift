@@ -107,7 +107,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         
         let vc1:TLController1 = TLController1()
      
-        self.navigationController?.animatorDuration = 1
+        self.navigationController?.animatorDuration = 0.4
         self.navigationController?.pushViewController(vc1, animated: true)
 
     }
