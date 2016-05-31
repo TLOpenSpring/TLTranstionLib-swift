@@ -31,6 +31,7 @@ public class TLTransitionProxy:NSProxy,UINavigationControllerDelegate {
     private var tlGeoAnimator:TLGeoAnimator!
     private var tlTurnAnimator:TLTurnAnimator!
     private var tlPortalAnimator:TLPortalAnimator!
+    private var tlVerticalFromBottonAnimator:TLVerticalFromBottonAnimator!
     
   
         /// 动画执行的时间
@@ -46,17 +47,34 @@ public class TLTransitionProxy:NSProxy,UINavigationControllerDelegate {
     func TL_animatorStyle(style:TLAnmimatorStyle) -> TLBaseAnimator {
         var animator:TLBaseAnimator = TLBaseAnimator()
         switch style {
-            
         case .System:
             break;
-    
         case .FromLeft:
             animator = self.crateFromleftAnimator()
             break
-            
         case .Fade:
             animator = self.createFadeAnimator()
             break;
+        case .Card:
+            animator = self.createCardAnimator()
+        case .Cube:
+            animator = self.createCubeAnimator()
+        case .Divide:
+            animator = self.createDivideAnimator()
+        case .FlipOver:
+            animator = self.createFlibOverAnimator()
+        case .FromTop:
+            animator = self.createFromTopAnimator()
+        case .Geo:
+            animator = self.createGeoAnimator()
+        case .Portal:
+            animator = self.createPortalAnimator()
+        case .Turn:
+            animator = self.createTurnAnimator()
+        case .CoverVerticalFromTop:
+            animator = self.createCoverVerticalAnimator()
+        case .VerticalFromBottom:
+            tlVerticalFromBottonAnimator = self.createVerticalFromBottonAnimater()
         default:
             break;
         }
@@ -119,7 +137,62 @@ public class TLTransitionProxy:NSProxy,UINavigationControllerDelegate {
         }
         return tlExplodeAnimator
     }
+    
+    func createFlibOverAnimator() -> TLFlipOverAnimator {
+        if(tlFlipOverAnimator == nil){
+          tlFlipOverAnimator = TLFlipOverAnimator()
+        }
+        
+        return tlFlipOverAnimator
+    }
+    
+    func createFoldAnimator() -> TLFoldAnimator {
+        if(tlFoldAnimator == nil){
+          tlFoldAnimator = TLFoldAnimator()
+        }
+        
+        return tlFoldAnimator
+    }
+    
+    func createFromTopAnimator() -> TLFromTopAnimator {
+        if(tlFromTopAnimator == nil){
+         tlFromTopAnimator = TLFromTopAnimator()
+        }
+        
+        return tlFromTopAnimator
+    }
+    
+    func createGeoAnimator() -> TLGeoAnimator {
+        if(tlGeoAnimator == nil){
+         tlGeoAnimator = TLGeoAnimator()
+        }
+        
+        return tlGeoAnimator
+    }
 
+    func createPortalAnimator() -> TLPortalAnimator {
+        if(tlPortalAnimator == nil){
+         tlPortalAnimator = TLPortalAnimator()
+        }
+        
+        return tlPortalAnimator
+    }
+    
+    func createTurnAnimator() -> TLTurnAnimator {
+        if(tlTurnAnimator == nil){
+         tlTurnAnimator = TLTurnAnimator()
+        }
+        
+        return tlTurnAnimator
+    }
+    
+    func createVerticalFromBottonAnimater() -> TLVerticalFromBottonAnimator {
+        if(tlVerticalFromBottonAnimator == nil){
+         tlVerticalFromBottonAnimator = TLVerticalFromBottonAnimator()
+        }
+        
+        return tlVerticalFromBottonAnimator;
+    }
  
     
     //MARK: - NSProxy代理
