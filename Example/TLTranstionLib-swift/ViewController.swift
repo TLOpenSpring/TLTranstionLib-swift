@@ -25,7 +25,19 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         super.viewDidLoad()
         self.view.backgroundColor=UIColor.whiteColor()
         self.title="首页";
-        arrayData=["System","Fade"]
+        arrayData=["System",
+                   "Fade",
+                   "Divide",
+                   "FromLeft",
+                   "FlipOver",
+                   "FromTop",
+                   "CoverVerticalFromTop",
+                   "Cube",
+                   "Portal",
+                   "Card",
+                   "Fold",
+                   "Turn",
+                   "Geo"]
         self.initialData()
         initTable()
         
@@ -60,18 +72,42 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
-        let style=arrayData[indexPath.row] as String;
+        let style = arrayData[indexPath.row];
         
-        if(style == "System"){
-            self.navigationController?.animatorDuration = 1;
-            self.navigationController!.animatorStyle = .System
-        }else if(style == "Fade"){
-            self.navigationController!.animatorStyle = .Fade
-            self.navigationController?.animatorDuration = 1;
+        switch style {
+        case "System":
+            self.navigationController?.animatorStyle = .System
+        case "Fade":
+            self.navigationController?.animatorStyle = .Fade
+        case "Divide":
+            self.navigationController?.animatorStyle = .Divide
+        case "FromLeft":
+            self.navigationController?.animatorStyle = .FromLeft
+        case "FlipOver":
+            self.navigationController?.animatorStyle = .FlipOver
+        case "FromTop":
+            self.navigationController?.animatorStyle = .FromTop
+        case "CoverVerticalFromTop":
+            self.navigationController?.animatorStyle = .CoverVerticalFromTop
+        case "Cube":
+            self.navigationController?.animatorStyle = .Cube
+        case "Portal":
+            self.navigationController?.animatorStyle = .Portal
+        case "Card":
+            self.navigationController?.animatorStyle = .Card
+        case "Fold":
+            self.navigationController?.animatorStyle = .Fold
+        case "Turn":
+            self.navigationController?.animatorStyle = .Turn
+        case "Geo":
+            self.navigationController?.animatorStyle = .Geo
+        default:
+            break
         }
         
         let vc1:TLController1 = TLController1()
      
+        self.navigationController?.animatorDuration = 1
         self.navigationController?.pushViewController(vc1, animated: true)
 
     }

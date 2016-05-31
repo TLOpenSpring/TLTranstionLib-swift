@@ -25,6 +25,17 @@ public class TLTransitionProxy:NSProxy,UINavigationControllerDelegate {
           self.tlFadeAnimator = newValue
         }
     }
+    
+    private var tlFromleftAnimator:TLFromLeftAnimator?{
+        
+        get {
+         return TLFromLeftAnimator()
+        }
+        
+        set {
+          self.tlFromleftAnimator = newValue
+        }
+    }
   
         /// 动画执行的时间
     public var tlDuration:NSTimeInterval?
@@ -39,11 +50,14 @@ public class TLTransitionProxy:NSProxy,UINavigationControllerDelegate {
     func TL_animatorStyle(style:TLAnmimatorStyle) -> TLBaseAnimator {
         var animator:TLBaseAnimator = TLBaseAnimator()
         switch style {
-        
+ 
+        case .FromLeft:
+            animator = self.tlFromleftAnimator!
+            break
+            
         case .Fade:
             animator = self.tlFadeAnimator!
             break;
-            
         default:
             break;
         }
