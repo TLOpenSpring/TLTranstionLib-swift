@@ -31,6 +31,9 @@ public class TLBaseAnimator: NSObject,UIViewControllerAnimatedTransitioning {
      */
     public func transitionDuration(transitionContext: UIViewControllerContextTransitioning?) -> NSTimeInterval{
     
+        if(animatorDuration == 0){
+          animatorDuration = 0.3
+        }
         return animatorDuration;
     }
     

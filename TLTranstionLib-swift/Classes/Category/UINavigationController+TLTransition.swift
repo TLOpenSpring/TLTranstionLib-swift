@@ -29,7 +29,10 @@ public extension UINavigationController {
     
     public var animatorDuration:NSTimeInterval?{
         get{
-          return self.animatorDuration
+            if(animatorDuration == 0){
+              animatorDuration = 0.3
+            }
+          return animatorDuration
         }
         set(newValue){
           self.proxy.tlDuration=newValue
