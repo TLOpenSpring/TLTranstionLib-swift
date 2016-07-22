@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+                                      
 public class TLBaseAnimator: NSObject,UIViewControllerAnimatedTransitioning {
 
     public var animatorDuration:NSTimeInterval = 0.3
@@ -15,7 +15,7 @@ public class TLBaseAnimator: NSObject,UIViewControllerAnimatedTransitioning {
     var operaiton:UINavigationControllerOperation?
     
    
-    override init() {
+    override public init() {
         self.operaiton = .Push;
         super.init();
     }

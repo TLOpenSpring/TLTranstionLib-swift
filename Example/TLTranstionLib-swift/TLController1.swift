@@ -20,9 +20,11 @@ class TLController1: BaseViewController {
 
     
     func initView() -> Void {
-        let iv=UIImageView(frame: CGRectMake(0, 64, 320, 400))
+        let iv=UIImageView(frame: CGRectMake(0, 20, screen_width, sceeen_height))
         iv.image=UIImage(named: "1")
+        iv.contentMode = .ScaleAspectFit
         self.view.addSubview(iv)
+    
         
     }
     

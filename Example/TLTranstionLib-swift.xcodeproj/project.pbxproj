@@ -17,6 +17,13 @@
 		4969798A1CE95E1800962BA0 /* 3.png in Resources */ = {isa = PBXBuildFile; fileRef = 496979861CE95E1800962BA0 /* 3.png */; };
 		4969798B1CE95E1800962BA0 /* 4.png in Resources */ = {isa = PBXBuildFile; fileRef = 496979871CE95E1800962BA0 /* 4.png */; };
 		4969798F1CE964B300962BA0 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4969798E1CE964B300962BA0 /* BaseViewController.swift */; };
+		496BA2591D41BA4D000C0B89 /* GlobalConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496BA2581D41BA4D000C0B89 /* GlobalConfig.swift */; };
+		496BA25C1D41DB7C000C0B89 /* TabBarControllerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496BA25B1D41DB7C000C0B89 /* TabBarControllerViewController.swift */; };
+		496BA25E1D41DC76000C0B89 /* TabViewController1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496BA25D1D41DC76000C0B89 /* TabViewController1.swift */; };
+		496BA2601D41DC86000C0B89 /* TabViewController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496BA25F1D41DC86000C0B89 /* TabViewController2.swift */; };
+		496BA2621D41DC91000C0B89 /* TabViewController3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496BA2611D41DC91000C0B89 /* TabViewController3.swift */; };
+		496BA2641D41DC9A000C0B89 /* TabViewController4.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496BA2631D41DC9A000C0B89 /* TabViewController4.swift */; };
+		496BA2661D41E240000C0B89 /* BaseTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496BA2651D41E240000C0B89 /* BaseTabController.swift */; };
 		49AF34EF1CE95CF600793064 /* TLTranstionLib_swift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49AF34EE1CE95CF600793064 /* TLTranstionLib_swift.framework */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
 		607FACD81AFB9204008FA782 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD71AFB9204008FA782 /* ViewController.swift */; };
@@ -49,9 +56,15 @@
 		496979851CE95E1800962BA0 /* 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 2.png; sourceTree = "<group>"; };
 		496979861CE95E1800962BA0 /* 3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 3.png; sourceTree = "<group>"; };
 		496979871CE95E1800962BA0 /* 4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 4.png; sourceTree = "<group>"; };
-		4969798C1CE95E7600962BA0 /* TLGlobal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLGlobal.h; sourceTree = "<group>"; };
 		4969798D1CE9611D00962BA0 /* Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Prefix.pch; sourceTree = "<group>"; };
 		4969798E1CE964B300962BA0 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		496BA2581D41BA4D000C0B89 /* GlobalConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalConfig.swift; sourceTree = "<group>"; };
+		496BA25B1D41DB7C000C0B89 /* TabBarControllerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarControllerViewController.swift; sourceTree = "<group>"; };
+		496BA25D1D41DC76000C0B89 /* TabViewController1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabViewController1.swift; sourceTree = "<group>"; };
+		496BA25F1D41DC86000C0B89 /* TabViewController2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabViewController2.swift; sourceTree = "<group>"; };
+		496BA2611D41DC91000C0B89 /* TabViewController3.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabViewController3.swift; sourceTree = "<group>"; };
+		496BA2631D41DC9A000C0B89 /* TabViewController4.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabViewController4.swift; sourceTree = "<group>"; };
+		496BA2651D41E240000C0B89 /* BaseTabController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseTabController.swift; sourceTree = "<group>"; };
 		49AF34EE1CE95CF600793064 /* TLTranstionLib_swift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TLTranstionLib_swift.framework; path = "../../../../../Library/Developer/Xcode/DerivedData/TLTranstionLib-swift-ffedlwvmwaozbebkizrwqchsgive/Build/Products/Debug-iphoneos/TLTranstionLib_swift.framework"; sourceTree = "<group>"; };
 		5A769BD5F0A96A7E2ABBD0E8 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		607FACD01AFB9204008FA782 /* TLTranstionLib-swift_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TLTranstionLib-swift_Example.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -99,10 +112,23 @@
 				4969797E1CE95DD500962BA0 /* TLController2.swift */,
 				496979801CE95DE100962BA0 /* TLController3.swift */,
 				496979821CE95DED00962BA0 /* TLController4.swift */,
-				4969798C1CE95E7600962BA0 /* TLGlobal.h */,
 				4969798E1CE964B300962BA0 /* BaseViewController.swift */,
+				496BA2581D41BA4D000C0B89 /* GlobalConfig.swift */,
 			);
 			name = Controllers;
+			sourceTree = "<group>";
+		};
+		496BA25A1D41DB5F000C0B89 /* TabBar */ = {
+			isa = PBXGroup;
+			children = (
+				496BA25B1D41DB7C000C0B89 /* TabBarControllerViewController.swift */,
+				496BA25D1D41DC76000C0B89 /* TabViewController1.swift */,
+				496BA25F1D41DC86000C0B89 /* TabViewController2.swift */,
+				496BA2611D41DC91000C0B89 /* TabViewController3.swift */,
+				496BA2631D41DC9A000C0B89 /* TabViewController4.swift */,
+				496BA2651D41E240000C0B89 /* BaseTabController.swift */,
+			);
+			name = TabBar;
 			sourceTree = "<group>";
 		};
 		607FACC71AFB9204008FA782 = {
@@ -129,6 +155,7 @@
 		607FACD21AFB9204008FA782 /* Example for TLTranstionLib-swift */ = {
 			isa = PBXGroup;
 			children = (
+				496BA25A1D41DB5F000C0B89 /* TabBar */,
 				4969797B1CE95D9300962BA0 /* Controllers */,
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
 				607FACD71AFB9204008FA782 /* ViewController.swift */,
@@ -407,10 +434,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				496BA25C1D41DB7C000C0B89 /* TabBarControllerViewController.swift in Sources */,
+				496BA2601D41DC86000C0B89 /* TabViewController2.swift in Sources */,
 				496979811CE95DE100962BA0 /* TLController3.swift in Sources */,
 				4969797F1CE95DD500962BA0 /* TLController2.swift in Sources */,
 				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
+				496BA2641D41DC9A000C0B89 /* TabViewController4.swift in Sources */,
 				4969797D1CE95DBD00962BA0 /* TLController1.swift in Sources */,
+				496BA2591D41BA4D000C0B89 /* GlobalConfig.swift in Sources */,
+				496BA25E1D41DC76000C0B89 /* TabViewController1.swift in Sources */,
+				496BA2621D41DC91000C0B89 /* TabViewController3.swift in Sources */,
+				496BA2661D41E240000C0B89 /* BaseTabController.swift in Sources */,
 				496979831CE95DED00962BA0 /* TLController4.swift in Sources */,
 				4969798F1CE964B300962BA0 /* BaseViewController.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,

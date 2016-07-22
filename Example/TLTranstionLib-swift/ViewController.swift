@@ -41,6 +41,14 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         self.initialData()
         initTable()
         
+        let rightBarItem = UIBarButtonItem(barButtonSystemItem: .Action, target: self, action: #selector(tabbarAction(_:)))
+        self.navigationItem.rightBarButtonItem = rightBarItem
+        
+    }
+    
+    func tabbarAction(sender:UIBarButtonItem) -> Void {
+        let tab = TabBarControllerViewController()
+        self.navigationController?.pushViewController(tab, animated: true)
     }
     
     func initialData() {
@@ -49,7 +57,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     }
     
     func initTable() {
-        self.tableView=UITableView(frame: CGRectMake(0, 64, screenWidth, screenHeight-64));
+        self.tableView=UITableView(frame: CGRectMake(0, 0, screenWidth, screenHeight-64));
             self.tableView?.dataSource=self;
             self.tableView?.delegate=self;
         self.view.addSubview(self.tableView!);
@@ -66,6 +74,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
           cell = UITableViewCell(style: .Default, reuseIdentifier: "Cell")
         }
         
+        cell?.accessoryType = .DisclosureIndicator
         cell?.textLabel?.text=arrayData[indexPath.row]
         return cell!
     }
@@ -95,6 +104,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
             self.navigationController?.animatorStyle = .Portal
         case "Card":
             self.navigationController?.animatorStyle = .Card
+            self.navigationController?.animatorDuration = 4
         case "Fold":
             self.navigationController?.animatorStyle = .Fold
         case "Turn":

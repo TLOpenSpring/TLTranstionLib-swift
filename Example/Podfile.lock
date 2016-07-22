@@ -10,7 +10,7 @@ PODS:
     - Nimble
     - Quick
   - Quick (0.9.2)
-  - TLTranstionLib-swift (0.0.3)
+  - TLTranstionLib-swift (0.0.4)
 
 DEPENDENCIES:
   - FBSnapshotTestCase
@@ -28,6 +28,6 @@ SPEC CHECKSUMS:
   Nimble: 703854335d181df169bbca9c97117b5cf8c47c1d
   Nimble-Snapshots: 2da4d2ec829b458d6886c06812c52493fce284c9
   Quick: 18d057bc66451eedd5d1c8dc99ba2a5db6e60226
-  TLTranstionLib-swift: 38de9c28c9efa8582bd219c088968a3235b7811f
+  TLTranstionLib-swift: c5775c3d0043c8aba7178baf776ddf5dfddd2d3e
 
 COCOAPODS: 0.39.0

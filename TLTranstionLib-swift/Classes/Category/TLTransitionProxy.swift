@@ -243,7 +243,8 @@ public class TLTransitionProxy:NSProxy,UINavigationControllerDelegate {
     }
     
     public func navigationController(navigationController: UINavigationController, interactionControllerForAnimationController animationController: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
-        return nil;
+        
+        return nil
     }
     
 }
