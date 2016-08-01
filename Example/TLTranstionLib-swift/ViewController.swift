@@ -32,7 +32,8 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
                    "FlipOver",
                    "FromTop",
                    "CoverVerticalFromTop",
-                   "Cube",
+                   "Cubehorizontal",
+                   "CubeVertical",
                    "Portal",
                    "Card",
                    "Fold",
@@ -57,7 +58,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     }
     
     func initTable() {
-        self.tableView=UITableView(frame: CGRectMake(0, 0, screenWidth, screenHeight-64));
+        self.tableView=UITableView(frame: CGRectMake(0, 0, screenWidth, screenHeight));
             self.tableView?.dataSource=self;
             self.tableView?.delegate=self;
         self.view.addSubview(self.tableView!);
@@ -98,13 +99,29 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
             self.navigationController?.animatorStyle = .FromTop
         case "CoverVerticalFromTop":
             self.navigationController?.animatorStyle = .CoverVerticalFromTop
-        case "Cube":
+            self.navigationController?.animatorDuration = 1
+        case "Cubehorizontal":
             self.navigationController?.animatorStyle = .Cube
+            self.navigationController?.animatorDuration = 1
+            let animator = self.navigationController?.proxy.baseAnimator
+            if(animator != nil){
+                if animator is TLCubeAnimator{
+                    (animator as! TLCubeAnimator).cubeDirecation = .horizontal
+                }
+            }
+        case "CubeVertical":
+            self.navigationController?.animatorDuration = 1
+            self.navigationController?.animatorStyle = .Cube
+            let animator = self.navigationController?.proxy.baseAnimator
+            if(animator != nil){
+                if animator is TLCubeAnimator{
+                  (animator as! TLCubeAnimator).cubeDirecation = .vertical
+                }
+            }
         case "Portal":
             self.navigationController?.animatorStyle = .Portal
         case "Card":
             self.navigationController?.animatorStyle = .Card
-            self.navigationController?.animatorDuration = 4
         case "Fold":
             self.navigationController?.animatorStyle = .Fold
         case "Turn":
@@ -114,6 +131,8 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         default:
             break
         }
+        
+        
         
         let vc1:TLController1 = TLController1()
      

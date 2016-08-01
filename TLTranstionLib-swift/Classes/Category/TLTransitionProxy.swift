@@ -84,7 +84,6 @@ public class TLTransitionProxy:NSProxy,UINavigationControllerDelegate {
    public  func setAnimatorStyle(animatorStyle:TLAnmimatorStyle) -> Void {
         self.animatorStyle = animatorStyle;
         self.baseAnimator = TL_animatorStyle(animatorStyle);
-    
     }
    
     //MARK: - 创建动画的工厂方法
