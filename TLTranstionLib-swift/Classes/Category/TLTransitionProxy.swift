@@ -32,7 +32,6 @@ public class TLTransitionProxy:NSProxy,UINavigationControllerDelegate {
     private var tlTurnAnimator:TLTurnAnimator!
     private var tlPortalAnimator:TLPortalAnimator!
     private var tlVerticalFromBottonAnimator:TLVerticalFromBottonAnimator!
-    
   
         /// 动画执行的时间
     public var tlDuration:NSTimeInterval?
@@ -52,6 +51,9 @@ public class TLTransitionProxy:NSProxy,UINavigationControllerDelegate {
         case .FromLeft:
             animator = self.crateFromleftAnimator()
             break
+        case .Explode:
+            animator = self.createExplodeAnimator()
+            break;
         case .Fade:
             animator = self.createFadeAnimator()
             break;
@@ -95,6 +97,13 @@ public class TLTransitionProxy:NSProxy,UINavigationControllerDelegate {
         return tlFromleftAnimator!
     }
     
+    func createExplodeAnimator() -> TLExplodeAnimator {
+        if(tlExplodeAnimator == nil){
+           tlExplodeAnimator = TLExplodeAnimator()
+        }
+        return tlExplodeAnimator!
+    }
+    
     func createFadeAnimator() -> TLFadeAnimator {
         if(tlFadeAnimator == nil){
             tlFadeAnimator = TLFadeAnimator();
@@ -130,12 +139,7 @@ public class TLTransitionProxy:NSProxy,UINavigationControllerDelegate {
         }
         return tlDivideAnimator
     }
-    func createExplodeAnimator() -> TLExplodeAnimator {
-        if(tlExplodeAnimator == nil){
-         tlExplodeAnimator = TLExplodeAnimator()
-        }
-        return tlExplodeAnimator
-    }
+ 
     
     func createFlibOverAnimator() -> TLFlipOverAnimator {
         if(tlFlipOverAnimator == nil){

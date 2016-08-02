@@ -12,7 +12,7 @@ class TLController1: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor=UIColor.whiteColor()
+        self.view.backgroundColor=UIColor.blueColor()
         self.title="页面1";
         
         initView()

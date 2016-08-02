@@ -24,7 +24,8 @@ public enum TLAnmimatorStyle:Int32 {
     case Fold = 12
     case Turn = 13
     case Geo = 14
-    case None = 15
+    case Explode = 15
+    case None = 16
 }
 
 

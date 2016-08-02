@@ -38,7 +38,8 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
                    "Card",
                    "Fold",
                    "Turn",
-                   "Geo"]
+                   "Geo",
+        "Explode"]
         self.initialData()
         initTable()
         
@@ -128,6 +129,9 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
             self.navigationController?.animatorStyle = .Turn
         case "Geo":
             self.navigationController?.animatorStyle = .Geo
+        case "Explode":
+            self.navigationController?.animatorStyle = .Explode
+            self.navigationController?.animatorDuration = 1
         default:
             break
         }
