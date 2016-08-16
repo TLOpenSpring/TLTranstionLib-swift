@@ -8,12 +8,13 @@
 
 import UIKit
                                       
-public class TLBaseAnimator: NSObject,UIViewControllerAnimatedTransitioning {
+public class TLBaseAnimator: NSObject,TLAnimationProtocol {
 
     public var animatorDuration:NSTimeInterval = 0.3
     
     var operaiton:UINavigationControllerOperation?
     
+    public var isPositiveAnimation: Bool = true
    
     override public init() {
         self.operaiton = .Push;
@@ -29,7 +30,7 @@ public class TLBaseAnimator: NSObject,UIViewControllerAnimatedTransitioning {
      
      - returns:
      */
-    public func transitionDuration(transitionContext: UIViewControllerContextTransitioning?) -> NSTimeInterval{
+     public func transitionDuration(transitionContext: UIViewControllerContextTransitioning?) -> NSTimeInterval{
     
         if(animatorDuration == 0){
           animatorDuration = 0.3

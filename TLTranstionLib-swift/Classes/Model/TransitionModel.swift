@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TransitionModel: NSObject {
+public class TransitionModel: NSObject {
     let  toViewController:UIViewController!;
     let  fromViewController:UIViewController!;
     let  toView:UIView!;

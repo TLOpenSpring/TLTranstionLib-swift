@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import TLTranstionLib_swift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -17,9 +18,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
         
-        let nav:UINavigationController=UINavigationController(rootViewController: ViewController())
+//        let nav:UINavigationController=UINavigationController(rootViewController: ViewController())
+        
+        let nav = TLTransitionNavigationController(rootViewController: ViewController())
         self.window?.rootViewController=nav;
         self.window?.makeKeyAndVisible()
+        
+        self.window?.frame
         
         return true
     }

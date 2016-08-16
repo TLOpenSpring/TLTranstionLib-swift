@@ -10,7 +10,6 @@ import UIKit
 
 public class TLFadeAnimator: TLBaseAnimator {
 
-    
     /**
      具体执行动画的代码
      
@@ -20,7 +19,7 @@ public class TLFadeAnimator: TLBaseAnimator {
         
         let model:TransitionModel=TransitionModel(context: transitionContext)
         
-        if(self.operaiton == .Push){
+        if(self.isPositiveAnimation == true){
             model.containerView.addSubview(model.toView)
             model.toView.alpha=0
             UIView.animateWithDuration(self.transitionDuration(transitionContext), animations: {
@@ -29,7 +28,7 @@ public class TLFadeAnimator: TLBaseAnimator {
                     
                     transitionContext.completeTransition(!transitionContext.transitionWasCancelled());
             });
-        }else if(self.operaiton == .Pop){
+        }else {
             model.containerView.insertSubview(model.toView, belowSubview: model.fromView)
             
             UIView.animateWithDuration(self.transitionDuration(transitionContext), animations: {
@@ -38,8 +37,6 @@ public class TLFadeAnimator: TLBaseAnimator {
                     
                     transitionContext.completeTransition(!transitionContext.transitionWasCancelled())
             })
-        }else{
-            super.animateTransition(transitionContext)
         }
         
     }

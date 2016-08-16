@@ -25,12 +25,18 @@ public class TLCardAnimator: TLBaseAnimator {
         
         let model = TransitionModel(context: transitionContext)
         
-        if(self.operaiton == .Push){
+//        if(self.operaiton == .Push){
+//            pushOperation(model, context: transitionContext)
+//        }else if(self.operaiton == .Pop){
+//            popOperation(model, context: transitionContext)
+//        }else{
+//            super.animateTransition(transitionContext)
+//        }
+        
+        if(self.isPositiveAnimation == true){
             pushOperation(model, context: transitionContext)
-        }else if(self.operaiton == .Pop){
-            popOperation(model, context: transitionContext)
         }else{
-            super.animateTransition(transitionContext)
+            popOperation(model, context: transitionContext)
         }
         
     }

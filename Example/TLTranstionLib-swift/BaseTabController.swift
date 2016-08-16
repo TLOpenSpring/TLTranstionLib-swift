@@ -8,7 +8,7 @@
 
 import UIKit
 
-class BaseTabController: UIViewController {
+class BaseTabController: UIViewController,UINavigationControllerDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()

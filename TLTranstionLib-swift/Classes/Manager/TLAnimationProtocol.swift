@@ -11,7 +11,7 @@ import UIKit
 /**
  *  动画效果的协议
  */
-protocol TLAnimationProtocol:UIViewControllerAnimatedTransitioning{
+public protocol TLAnimationProtocol:UIViewControllerAnimatedTransitioning{
     
     /**
      * If the animation should be positive or negative.
@@ -27,7 +27,7 @@ protocol TLAnimationProtocol:UIViewControllerAnimatedTransitioning{
 /**
  *  手势交互效果的协议
  */
-protocol TLTransitionInteractionProtocol:UIViewControllerInteractiveTransitioning {
+public protocol TLTransitionInteractionProtocol:UIViewControllerInteractiveTransitioning {
     
     /// 当前用户是否可以交互
     var isInteractive:Bool{
@@ -46,7 +46,7 @@ protocol TLTransitionInteractionProtocol:UIViewControllerInteractiveTransitionin
         get
         set
     }
-    
+    /// 下一个控制器的代理
     var nextControllerDelegate:TLTransitionInteractionControllerDelegate?{
         get
         set
@@ -69,8 +69,7 @@ protocol TLTransitionInteractionProtocol:UIViewControllerInteractiveTransitionin
 
 
 
-
- protocol TLTransitionInteractionControllerDelegate {
+public protocol TLTransitionInteractionControllerDelegate {
     
     /**
      这个代理允许控制器去接收到一个UIViewController去展示
@@ -81,7 +80,7 @@ protocol TLTransitionInteractionProtocol:UIViewControllerInteractiveTransitionin
      - returns: 目标控制器
      */
     
-     func nextViewControllerForInteractor(interactor:TLTransitionInteractionProtocol)->UIViewController
+   func nextViewControllerForInteractor(interactor:TLTransitionInteractionProtocol)->UIViewController
 
 
 }

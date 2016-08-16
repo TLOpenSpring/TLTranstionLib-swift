@@ -8,7 +8,7 @@
 
 import UIKit
 
-enum TLTranstionAction:Int {
+public enum TLTranstionAction:Int {
     case tl_Push
     case tl_Pop
     case tl_Present
@@ -28,24 +28,25 @@ enum TLTranstionAction:Int {
 private let TransitionsAnyViewControllerKey = "kRZTTransitionsAnyViewControllerKey";
 private let TransitionsKeySpacer = "_";
 
-class TLTransitionManager: NSObject,UINavigationControllerDelegate,UITabBarControllerDelegate,UIViewControllerTransitioningDelegate{
+public class TLTransitionManager: NSObject,UINavigationControllerDelegate,UITabBarControllerDelegate,UIViewControllerTransitioningDelegate{
 
     /// 在一个UINavigationCtroller进行推送或者Pop操作中时的默认动画
-    var defaultPushPopAnimation:TLAnimationProtocol?
+    public var defaultPushPopAnimation:TLAnimationProtocol?
     
     /// 在一个UIViewControleller中进行present或者dismiss时候的默认动画
-    var defaultPresentDismissAnimation:TLAnimationProtocol?
+    public var defaultPresentDismissAnimation:TLAnimationProtocol?
 
     /// 在使用TabBar的时候默认动画
-    var defaultTabBarAnimation:TLAnimationProtocol?
+    public var defaultTabBarAnimation:TLAnimationProtocol?
     
     var animationControllers = [TLUniqueTransitionModel:TLAnimationProtocol]()
-    var animationControllerDirectionOverrides = [String:AnyObject]()
-    var interactionControllers = [String:AnyObject]()
+    var animationControllerDirectionOverrides = [TLUniqueTransitionModel:Bool]()
+    
+    var interactionControllers = [TLUniqueTransitionModel:TLTransitionInteractionProtocol]()
     
     
     //单例
-    class func shared()->TLTransitionManager{
+   public class func shared()->TLTransitionManager{
         struct Singleton{
             static var onceToken : dispatch_once_t = 0
             static var single:TLTransitionManager?
@@ -65,9 +66,9 @@ class TLTransitionManager: NSObject,UINavigationControllerDelegate,UITabBarContr
      - parameter fromViewController: 开始过渡的动画类
      - parameter action:             操作类型，比如推送(push),pop(弹回),present(跳转),dismiss(消失)
      */
-    func tl_setAnimation(animation animation:TLAnimationProtocol,fromViewController:AnyClass,action:TLTranstionAction) -> Void {
+   public func tl_setAnimation(animation animation:TLAnimationProtocol,fromViewController:AnyClass,action:TLTranstionAction) -> Void {
         
-        
+        return tl_setAnimation(animation: animation, fromViewController: fromViewController, toViewController: nil, action: action)
     }
     /**
      设置动画的效果，当一个UIViewController到另一个UIViewController时,
@@ -77,7 +78,7 @@ class TLTransitionManager: NSObject,UINavigationControllerDelegate,UITabBarContr
      - parameter toViewController:   The @c UIViewController class that is being transitioned to.
      - parameter action:             操作类型，比如推送(push),pop(弹回),present(跳转),dismiss(消失)
      */
-    func tl_setAnimation(animation animation:TLAnimationProtocol,fromViewController:AnyClass,toViewController:AnyClass,action:TLTranstionAction) -> Void {
+    public func tl_setAnimation(animation animation:TLAnimationProtocol,fromViewController:AnyClass,toViewController:AnyClass?,action:TLTranstionAction) -> Void {
         //获取转换Action的集合
         let arrayActions = self.getTranstionByAction(action)
         
@@ -97,8 +98,25 @@ class TLTransitionManager: NSObject,UINavigationControllerDelegate,UITabBarContr
      - parameter toController:          过渡动画的目标地址
      - parameter action:                 交互动作,EX:pop,push,present,dismiss
      */
-    func tl_setInteraction(interactionController interactionController:TLTransitionInteractionProtocol,fromController:AnyClass,toController:AnyClass,action:TLTranstionAction) -> Void {
+    public func tl_setInteraction(interactionController interactionController:TLTransitionInteractionProtocol,fromController:AnyClass,toController:AnyClass?,action:TLTranstionAction) -> Void {
+        //获取转换Action的集合
+        let arrayActions = self.getTranstionByAction(action)
+        var uniqueKey:TLUniqueTransitionModel!
+        for item in arrayActions {
+            uniqueKey = TLUniqueTransitionModel(action: item, fromController: fromController, toController: toController)
+            self.interactionControllers[uniqueKey] = interactionController
+        }
         
+    }
+    
+    /**
+     覆盖指定的的过渡方向（推送或者回滚(dismiss)）
+     
+     - parameter override:   是否覆盖
+     - parameter transition: 过渡的模型类的唯一key
+     */
+    func overrideAnimationDirection(override:Bool,uniqueTransitionModel:TLUniqueTransitionModel) -> Void {
+        self.animationControllerDirectionOverrides[uniqueTransitionModel] = override
     }
     
     //MARK: - UIViewControllerTransitioningDelegate
@@ -107,13 +125,13 @@ class TLTransitionManager: NSObject,UINavigationControllerDelegate,UITabBarContr
      Asks your delegate for the transition animator object to use when presenting a view controller.
      The animator object to use when presenting the view controller or nil if you do not want to present the view controller using a custom transition. The object you return should be capable of performing a fixed-length animation that is not interactive
      
-     - parameter presented:  <#presented description#>
-     - parameter presenting: <#presenting description#>
-     - parameter source:     <#source description#>
+     - parameter presented:  presented description
+     - parameter presenting: presenting description
+     - parameter source:     source description
      
      - returns: <#return value description#>
      */
-    func animationControllerForPresentedController(presented: UIViewController, presentingController presenting: UIViewController, sourceController source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+    public func animationControllerForPresentedController(presented: UIViewController, presentingController presenting: UIViewController, sourceController source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         
         let keyValue = TLUniqueTransitionModel(action: .tl_Present, fromController: source.classForCoder, toController: presented.classForCoder)
         //得到动画协议的实现类
@@ -126,6 +144,8 @@ class TLTransitionManager: NSObject,UINavigationControllerDelegate,UITabBarContr
         if animation == nil{
            animation = self.defaultPresentDismissAnimation
         }
+        
+        animation?.isPositiveAnimation = true
         return animation
     }
     
@@ -137,7 +157,7 @@ class TLTransitionManager: NSObject,UINavigationControllerDelegate,UITabBarContr
      
      - returns: The animator object to use when dismissing the view controller or nil if you do not want to dismiss the view controller using a custom transition.
      */
-    func animationControllerForDismissedController(dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+    public func animationControllerForDismissedController(dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         let keyValue = TLUniqueTransitionModel(action: .tl_Dismiss, fromController: dismissed.classForCoder, toController: nil)
         
         var animation:TLAnimationProtocol?
@@ -157,7 +177,7 @@ class TLTransitionManager: NSObject,UINavigationControllerDelegate,UITabBarContr
                 animation = self.animationControllers[keyValue]
             }
             if animation == nil{
-             keyValue.toViewController = childVc?.classForCoder
+                keyValue.toViewController = childVc?.classForCoder
                 keyValue.fromViewController = nil
                 animation = self.animationControllers[keyValue]
                 
@@ -174,14 +194,160 @@ class TLTransitionManager: NSObject,UINavigationControllerDelegate,UITabBarContr
         if animation == nil{
           animation = self.defaultPresentDismissAnimation
         }
-        
+        animation?.isPositiveAnimation = false
         return animation!
         
+    }
+    /**
+     Asks your delegate for the interactive animator object to use when presenting a view controller.
+     
+     - parameter animator:
+     
+     - returns:
+     */
+   public func interactionControllerForPresentation(animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
+        
+        var returnInteraction:UIViewControllerInteractiveTransitioning?
+        
+        for(key,value) in self.animationControllers{
+            //三个等号比较的是内存地址
+            if animator === value  && key.transitionAction == TLTranstionAction.tl_Present{
+             
+                //获取交互手势
+                var interactionController = self.interactionControllers[key]
+                if interactionController == nil{
+                  key.toViewController = nil
+                    interactionController = self.interactionControllers[key]
+                }
+                
+                if let interaction = interactionController where interaction.isInteractive == true{
+                   returnInteraction = interaction
+                    break
+                }
+            }
+        }
+        return returnInteraction
+    }
+    
+    /**
+     Asks your delegate for the interactive animator object to use when dismissing a view controller.
+     
+     - parameter animator:
+     
+     - returns:
+     */
+   public func interactionControllerForDismissal(animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
+        var returnInteraction:UIViewControllerInteractiveTransitioning?
+        
+        for(key,value) in self.animationControllers{
+            //三个等号比较的是内存地址
+            if animator === value  && key.transitionAction == TLTranstionAction.tl_Dismiss{
+                
+                //获取交互手势
+                var interactionController = self.interactionControllers[key]
+                if interactionController == nil{
+                    key.toViewController = nil
+                    interactionController = self.interactionControllers[key]
+                }
+                
+                if let interaction = interactionController where interaction.isInteractive == true{
+                    returnInteraction = interaction
+                    break
+                }
+            }
+        }
+        return returnInteraction
     }
     
     
     
     
+    
+    
+    
+    
+    //MARK: - UINaviagationController delegate
+    /**
+     Called to allow the delegate to return an interactive animator object for use during view controller transitions.
+     
+     - parameter navigationController: 导航控制器
+     - parameter animationController:  动画效果
+     
+     - returns:
+     */
+    public func navigationController(navigationController: UINavigationController, interactionControllerForAnimationController animationController: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
+        
+        return interactionControllerForAction(TLTranstionAction.tl_Pop, animator: animationController)
+    }
+    public func navigationController(navigationController: UINavigationController, animationControllerForOperation operation: UINavigationControllerOperation, fromViewController fromVC: UIViewController, toViewController toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        
+        
+        let action = operation == .Push ? TLTranstionAction.tl_Push : TLTranstionAction.tl_Pop
+        
+        let keyValue = TLUniqueTransitionModel(action: action, fromController: fromVC.classForCoder, toController: toVC.classForCoder)
+        
+        var aniation = self.animationControllers[keyValue]
+        if aniation == nil{
+            keyValue.toViewController = toVC.classForCoder
+            keyValue.fromViewController = nil
+            aniation = self.animationControllers[keyValue]
+        }
+        
+        if aniation == nil{
+            aniation = self.defaultPushPopAnimation
+        }
+        
+        if operation == .Push{
+            aniation?.isPositiveAnimation = true
+        }else if(operation == .Pop){
+            aniation?.isPositiveAnimation = false
+        }
+        return aniation
+    }
+   
+    
+    //MARK: - UIInteractionController Caching
+    func interactionControllerForAction(action:TLTranstionAction,animator:UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
+        
+        
+        for (key,value) in self.interactionControllers {
+            if value.action == action &&  value.isInteractive == true{
+              return value
+            }
+        }
+        return nil
+    }
+    
+    
+    //MARK: - UITabbarViewController delegate
+    public func tabBarController(tabBarController: UITabBarController, interactionControllerForAnimationController animationController: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
+        return self.interactionControllerForAction(TLTranstionAction.tl_Tab, animator: animationController)
+    }
+    
+    public func tabBarController(tabBarController: UITabBarController, animationControllerForTransitionFromViewController fromVC: UIViewController, toViewController toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        
+        let keyValue = TLUniqueTransitionModel(action: TLTranstionAction.tl_Tab, fromController: fromVC.classForCoder, toController: toVC.classForCoder)
+        
+        var animation = self.animationControllers[keyValue]
+        if animation == nil{
+            keyValue.toViewController = nil
+            animation = self.animationControllers[keyValue]
+        }
+        
+        if animation == nil{
+            animation = self.defaultTabBarAnimation
+        }
+        
+        let fromVcIndex = tabBarController.viewControllers?.indexOf(fromVC)
+        let toVcIndex = tabBarController.viewControllers?.indexOf(toVC)
+        
+        if (animation != nil && self.animationControllerDirectionOverrides[keyValue] == false){
+            animation?.isPositiveAnimation = fromVcIndex>toVcIndex
+        }
+        
+        return animation
+        
+    }
 }
 
 

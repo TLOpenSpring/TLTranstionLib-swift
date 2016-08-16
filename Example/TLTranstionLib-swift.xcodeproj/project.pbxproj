@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0D206AD0912A4A2017423DF2 /* Pods_TLTranstionLib_swift_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99056C913918EF777D36604C /* Pods_TLTranstionLib_swift_Example.framework */; };
+		491F0A951D62A79E006DEDBB /* SimpleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491F0A941D62A79E006DEDBB /* SimpleViewController.swift */; };
 		4969797D1CE95DBD00962BA0 /* TLController1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4969797C1CE95DBD00962BA0 /* TLController1.swift */; };
 		4969797F1CE95DD500962BA0 /* TLController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4969797E1CE95DD500962BA0 /* TLController2.swift */; };
 		496979811CE95DE100962BA0 /* TLController3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496979801CE95DE100962BA0 /* TLController3.swift */; };
@@ -25,6 +26,7 @@
 		496BA2641D41DC9A000C0B89 /* TabViewController4.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496BA2631D41DC9A000C0B89 /* TabViewController4.swift */; };
 		496BA2661D41E240000C0B89 /* BaseTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496BA2651D41E240000C0B89 /* BaseTabController.swift */; };
 		49AF34EF1CE95CF600793064 /* TLTranstionLib_swift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49AF34EE1CE95CF600793064 /* TLTranstionLib_swift.framework */; };
+		49CAD4DF1D62EAA400076985 /* TLNavController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CAD4DE1D62EAA400076985 /* TLNavController.swift */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
 		607FACD81AFB9204008FA782 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD71AFB9204008FA782 /* ViewController.swift */; };
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
@@ -48,6 +50,7 @@
 		20254A30DB50751A88B7AEFA /* Pods-TLTranstionLib-swift_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TLTranstionLib-swift_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TLTranstionLib-swift_Tests/Pods-TLTranstionLib-swift_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		246CE7B336F73FB83EAE9739 /* Pods-TLTranstionLib-swift_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TLTranstionLib-swift_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-TLTranstionLib-swift_Example/Pods-TLTranstionLib-swift_Example.release.xcconfig"; sourceTree = "<group>"; };
 		421553FE0EE1104B503BE8A0 /* Pods_TLTranstionLib_swift_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TLTranstionLib_swift_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		491F0A941D62A79E006DEDBB /* SimpleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleViewController.swift; sourceTree = "<group>"; };
 		4969797C1CE95DBD00962BA0 /* TLController1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TLController1.swift; sourceTree = "<group>"; };
 		4969797E1CE95DD500962BA0 /* TLController2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TLController2.swift; sourceTree = "<group>"; };
 		496979801CE95DE100962BA0 /* TLController3.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TLController3.swift; sourceTree = "<group>"; };
@@ -66,6 +69,7 @@
 		496BA2631D41DC9A000C0B89 /* TabViewController4.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabViewController4.swift; sourceTree = "<group>"; };
 		496BA2651D41E240000C0B89 /* BaseTabController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseTabController.swift; sourceTree = "<group>"; };
 		49AF34EE1CE95CF600793064 /* TLTranstionLib_swift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TLTranstionLib_swift.framework; path = "../../../../../Library/Developer/Xcode/DerivedData/TLTranstionLib-swift-ffedlwvmwaozbebkizrwqchsgive/Build/Products/Debug-iphoneos/TLTranstionLib_swift.framework"; sourceTree = "<group>"; };
+		49CAD4DE1D62EAA400076985 /* TLNavController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TLNavController.swift; sourceTree = "<group>"; };
 		5A769BD5F0A96A7E2ABBD0E8 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		607FACD01AFB9204008FA782 /* TLTranstionLib-swift_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TLTranstionLib-swift_Example.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD41AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -127,6 +131,8 @@
 				496BA2611D41DC91000C0B89 /* TabViewController3.swift */,
 				496BA2631D41DC9A000C0B89 /* TabViewController4.swift */,
 				496BA2651D41E240000C0B89 /* BaseTabController.swift */,
+				491F0A941D62A79E006DEDBB /* SimpleViewController.swift */,
+				49CAD4DE1D62EAA400076985 /* TLNavController.swift */,
 			);
 			name = TabBar;
 			sourceTree = "<group>";
@@ -439,9 +445,11 @@
 				496979811CE95DE100962BA0 /* TLController3.swift in Sources */,
 				4969797F1CE95DD500962BA0 /* TLController2.swift in Sources */,
 				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
+				491F0A951D62A79E006DEDBB /* SimpleViewController.swift in Sources */,
 				496BA2641D41DC9A000C0B89 /* TabViewController4.swift in Sources */,
 				4969797D1CE95DBD00962BA0 /* TLController1.swift in Sources */,
 				496BA2591D41BA4D000C0B89 /* GlobalConfig.swift in Sources */,
+				49CAD4DF1D62EAA400076985 /* TLNavController.swift in Sources */,
 				496BA25E1D41DC76000C0B89 /* TabViewController1.swift in Sources */,
 				496BA2621D41DC91000C0B89 /* TabViewController3.swift in Sources */,
 				496BA2661D41E240000C0B89 /* BaseTabController.swift in Sources */,

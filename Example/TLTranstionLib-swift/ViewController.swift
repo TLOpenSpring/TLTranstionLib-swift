@@ -46,11 +46,18 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         let rightBarItem = UIBarButtonItem(barButtonSystemItem: .Action, target: self, action: #selector(tabbarAction(_:)))
         self.navigationItem.rightBarButtonItem = rightBarItem
         
+        
+         TLTransitionManager.shared().defaultPushPopAnimation = TLFadeAnimator()
+        
     }
     
     func tabbarAction(sender:UIBarButtonItem) -> Void {
         let tab = TabBarControllerViewController()
-        self.navigationController?.pushViewController(tab, animated: true)
+        
+        let nav = UINavigationController(rootViewController: tab)
+        
+//        self.navigationController?.pushViewController(tab, animated: true)
+        self.presentViewController(nav, animated: true, completion: nil)
     }
     
     func initialData() {
@@ -90,6 +97,9 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
             self.navigationController?.animatorStyle = .System
         case "Fade":
             self.navigationController?.animatorStyle = .Fade
+            
+            TLTransitionManager.shared().tl_setAnimation(animation: TLFadeAnimator(), fromViewController: self.dynamicType, action: .tl_PushPop)
+            
         case "Divide":
             self.navigationController?.animatorStyle = .Divide
         case "FromLeft":
