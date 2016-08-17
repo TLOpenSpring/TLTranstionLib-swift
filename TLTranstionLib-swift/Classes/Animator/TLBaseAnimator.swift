@@ -46,14 +46,16 @@ public class TLBaseAnimator: NSObject,TLAnimationProtocol {
     public func animateTransition(transitionContext: UIViewControllerContextTransitioning){
         let model:TransitionModel=TransitionModel(context: transitionContext)
        
-        if(self.operaiton == .Push){
+        if(self.isPositiveAnimation == true){
             pushOperation(model, context: transitionContext)
-        }else if(self.operaiton == .Pop){
-            popOperation(model, context: transitionContext)
         }else{
-            model.containerView.addSubview(model.toView)
-            transitionContext.completeTransition(!transitionContext.transitionWasCancelled())
+            popOperation(model, context: transitionContext)
         }
+        
+//        else{
+//            model.containerView.addSubview(model.toView)
+//            transitionContext.completeTransition(!transitionContext.transitionWasCancelled())
+//        }
     }
     
     /**

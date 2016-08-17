@@ -19,7 +19,7 @@ class TLUniqueTransitionModel: NSObject,NSCopying {
     var toViewController:AnyClass?
     
     
-    init(action:TLTranstionAction,fromController:AnyClass,toController:AnyClass?) {
+    init(action:TLTranstionAction,fromController:AnyClass?,toController:AnyClass?) {
         self.transitionAction = action
         self.fromViewController = fromController
         self.toViewController = toController
@@ -41,13 +41,15 @@ class TLUniqueTransitionModel: NSObject,NSCopying {
 //        return (self.fromViewController?.hash())! ^ (self.toViewController?.hash())! ^ self.transitionAction
 //    }
     
+    
+    
    
     
    
 
     override func isEqual(object: AnyObject?) -> Bool {
         if (object is TLUniqueTransitionModel) == false{
-         return false
+           return false
         }
         let otherObj = object as! TLUniqueTransitionModel
         

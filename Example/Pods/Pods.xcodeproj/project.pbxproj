@@ -344,7 +344,7 @@
 		9215E70DC66C70D9FC0CC77250D9AE96 /* FBSnapshotTestCasePlatform.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBSnapshotTestCasePlatform.h; path = FBSnapshotTestCase/FBSnapshotTestCasePlatform.h; sourceTree = "<group>"; };
 		9462FF1AE9D75B62056789784CF4DCFD /* TLFlipOverAnimator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TLFlipOverAnimator.swift; sourceTree = "<group>"; };
 		94CDC28A2A2ADE291AEA06867122C424 /* TLBaseAnimator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TLBaseAnimator.swift; sourceTree = "<group>"; };
-		961501183B3A22087C0A1C42842FDB02 /* TLUniqueTransitionModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TLUniqueTransitionModel.swift; sourceTree = "<group>"; };
+		961501183B3A22087C0A1C42842FDB02 /* TLUniqueTransitionModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TLUniqueTransitionModel.swift; path = ../Manager/TLUniqueTransitionModel.swift; sourceTree = "<group>"; };
 		9823197EA5904A9150FB0AD8B09841E6 /* FBSnapshotTestCase.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FBSnapshotTestCase.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		999FFA06127CE356CBCD2A88AE2E3F4A /* BeVoid.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BeVoid.swift; path = Sources/Nimble/Matchers/BeVoid.swift; sourceTree = "<group>"; };
 		9E685779B53865FBDF4197A9CE4D9FD1 /* ThrowError.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ThrowError.swift; path = Sources/Nimble/Matchers/ThrowError.swift; sourceTree = "<group>"; };
@@ -836,7 +836,6 @@
 				AC0AFD6F1410D23BCBD7FEA367FC9D89 /* TLAnimationProtocol.swift */,
 				3DFC339C2605070DC9BAD172C630601C /* TLTransitionManager.swift */,
 				8018A9517983750D7EE52D1EA4FAF504 /* TLTransitionNavigationController.swift */,
-				961501183B3A22087C0A1C42842FDB02 /* TLUniqueTransitionModel.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -893,6 +892,7 @@
 		F2E394DC1ABA2C0DD9AAE60B37CF740E /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				961501183B3A22087C0A1C42842FDB02 /* TLUniqueTransitionModel.swift */,
 				07A75771C9D22917BEAA0F901ECB3F33 /* TLSnapshotModel.swift */,
 				7D9512A3B31178A016D689A7088F14F3 /* TransitionModel.swift */,
 				49CAD4E01D62FFBF00076985 /* TLGlobalConfig.swift */,

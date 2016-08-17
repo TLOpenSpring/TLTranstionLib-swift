@@ -46,8 +46,11 @@ public class TLCubeAnimator: TLBaseAnimator {
         var viewToTransform:CATransform3D?
         
         var dir:CGFloat = 1
-        if self.operaiton == .Pop{
-            dir = -dir
+//        if self.operaiton == .Pop{
+//            dir = -dir
+//        }
+        if self.isPositiveAnimation == false{
+           dir = -dir
         }
         
         switch cubeDirecation {

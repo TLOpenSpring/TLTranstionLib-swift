@@ -38,14 +38,11 @@ public class TLFromLeftAnimator: TLBaseAnimator {
         let model = TransitionModel(context: transitionContext)
         
         
-        
-        if(self.operaiton == .Push){
+        if(self.isPositiveAnimation == true){
             pushOpreation(model, context: transitionContext)
             
-        }else if(self.operaiton == .Pop){
+        }else{
             popOpreation(model, context: transitionContext)
-        }else {
-            super.animateTransition(transitionContext)
         }
     }
     

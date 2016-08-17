@@ -25,12 +25,10 @@ public class TLCoverVerticalAnimator: TLBaseAnimator {
         
         let model = TransitionModel(context: transitionContext)
         
-        if(self.operaiton == .Push){
+        if(self.isPositiveAnimation == true){
             pushOperation(model, context: transitionContext)
-        }else if(self.operaiton == .Pop){
+        }else {
             popOperation(model, context: transitionContext)
-        }else{
-            super.animateTransition(transitionContext)
         }
     }
     

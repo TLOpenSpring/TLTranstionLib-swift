@@ -47,8 +47,6 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         self.navigationItem.rightBarButtonItem = rightBarItem
         
         
-         TLTransitionManager.shared().defaultPushPopAnimation = TLFadeAnimator()
-        
     }
     
     func tabbarAction(sender:UIBarButtonItem) -> Void {
@@ -102,39 +100,44 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
             
         case "Divide":
             self.navigationController?.animatorStyle = .Divide
+            
+            TLTransitionManager.shared().tl_setAnimation(animation: TLDivideAnimator(), fromViewController: ViewController.self, action: .tl_PushPop)
+            
+            
         case "FromLeft":
             self.navigationController?.animatorStyle = .FromLeft
+            TLTransitionManager.shared().tl_setAnimation(animation:TLFromLeftAnimator() , fromViewController: self.dynamicType, action: .tl_PushPop)
         case "FlipOver":
             self.navigationController?.animatorStyle = .FlipOver
+            TLTransitionManager.shared().tl_setAnimation(animation:TLFlipOverAnimator() , fromViewController: self.dynamicType, action: .tl_PushPop)
         case "FromTop":
             self.navigationController?.animatorStyle = .FromTop
+            TLTransitionManager.shared().tl_setAnimation(animation:TLFromTopAnimator() , fromViewController: self.dynamicType, action: .tl_PushPop)
         case "CoverVerticalFromTop":
             self.navigationController?.animatorStyle = .CoverVerticalFromTop
             self.navigationController?.animatorDuration = 1
+            TLTransitionManager.shared().tl_setAnimation(animation:TLCoverVerticalAnimator() , fromViewController: self.dynamicType, action: .tl_PushPop)
         case "Cubehorizontal":
             self.navigationController?.animatorStyle = .Cube
             self.navigationController?.animatorDuration = 1
-            let animator = self.navigationController?.proxy.baseAnimator
-            if(animator != nil){
-                if animator is TLCubeAnimator{
-                    (animator as! TLCubeAnimator).cubeDirecation = .horizontal
-                }
-            }
+            
+            TLTransitionManager.shared().tl_setAnimation(animation:TLCubeAnimator() , fromViewController: self.dynamicType, action: .tl_PushPop)
         case "CubeVertical":
             self.navigationController?.animatorDuration = 1
             self.navigationController?.animatorStyle = .Cube
-            let animator = self.navigationController?.proxy.baseAnimator
-            if(animator != nil){
-                if animator is TLCubeAnimator{
-                  (animator as! TLCubeAnimator).cubeDirecation = .vertical
-                }
-            }
+            
+            let cube = TLCubeAnimator()
+            cube.cubeDirecation = .vertical
+            
+            TLTransitionManager.shared().tl_setAnimation(animation: cube, fromViewController: self.dynamicType, action: .tl_PushPop)
         case "Portal":
             self.navigationController?.animatorStyle = .Portal
         case "Card":
             self.navigationController?.animatorStyle = .Card
+            TLTransitionManager.shared().tl_setAnimation(animation: TLCardAnimator(), fromViewController: self.dynamicType, action: .tl_PushPop)
         case "Fold":
             self.navigationController?.animatorStyle = .Fold
+            TLTransitionManager.shared().tl_setAnimation(animation: TLFoldAnimator(), fromViewController: self.dynamicType, action: .tl_PushPop)
         case "Turn":
             self.navigationController?.animatorStyle = .Turn
         case "Geo":
@@ -142,6 +145,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         case "Explode":
             self.navigationController?.animatorStyle = .Explode
             self.navigationController?.animatorDuration = 1
+            TLTransitionManager.shared().tl_setAnimation(animation: TLExplodeAnimator(), fromViewController: self.dynamicType, action: .tl_PushPop)
         default:
             break
         }

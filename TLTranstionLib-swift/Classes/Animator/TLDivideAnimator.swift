@@ -16,9 +16,7 @@ public class TLDivideAnimator: TLBaseAnimator {
     public override func animateTransition(transitionContext: UIViewControllerContextTransitioning) {
         let model = TransitionModel(context: transitionContext)
         
-      
-        
-        if self.operaiton == .Push{
+        if self.isPositiveAnimation == true{
           pushOperation(model, context: transitionContext)
         }else{
           popOperation(model, context: transitionContext)

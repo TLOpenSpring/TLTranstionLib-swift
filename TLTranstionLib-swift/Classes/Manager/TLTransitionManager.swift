@@ -78,14 +78,34 @@ public class TLTransitionManager: NSObject,UINavigationControllerDelegate,UITabB
      - parameter toViewController:   The @c UIViewController class that is being transitioned to.
      - parameter action:             操作类型，比如推送(push),pop(弹回),present(跳转),dismiss(消失)
      */
-    public func tl_setAnimation(animation animation:TLAnimationProtocol,fromViewController:AnyClass,toViewController:AnyClass?,action:TLTranstionAction) -> Void {
+    public func tl_setAnimation(animation animation:TLAnimationProtocol,fromViewController:AnyClass?,toViewController:AnyClass?,action:TLTranstionAction) -> Void {
         //获取转换Action的集合
         let arrayActions = self.getTranstionByAction(action)
         
         var uniqueKey:TLUniqueTransitionModel!
         for item in arrayActions {
-            uniqueKey = TLUniqueTransitionModel(action: item, fromController: fromViewController, toController: toViewController)
-            self.animationControllers[uniqueKey!] = animation
+            
+            var tempFromController:AnyClass? = fromViewController
+            var tempToController:AnyClass? = toViewController
+            
+            if (item == TLTranstionAction.tl_Pop || item == TLTranstionAction.tl_Dismiss){
+                tempFromController = toViewController
+                tempToController = fromViewController
+            }
+            
+            uniqueKey = TLUniqueTransitionModel(action: item, fromController: tempFromController, toController: tempToController)
+            
+            var animationModel = self.animationControllers.equalsUniqueModel(uniqueKey)
+            
+            if animationModel != nil{
+                self.animationControllers.removeUniqueKey(uniqueKey)
+                self.animationControllers[uniqueKey!] = animation
+                
+            }else{
+                self.animationControllers[uniqueKey!] = animation
+            }
+            
+            
         }
         
     }
@@ -103,8 +123,24 @@ public class TLTransitionManager: NSObject,UINavigationControllerDelegate,UITabB
         let arrayActions = self.getTranstionByAction(action)
         var uniqueKey:TLUniqueTransitionModel!
         for item in arrayActions {
-            uniqueKey = TLUniqueTransitionModel(action: item, fromController: fromController, toController: toController)
-            self.interactionControllers[uniqueKey] = interactionController
+            
+            var tempFromController:AnyClass? = fromController
+            var tempToController:AnyClass? = toController
+            
+            if (item == TLTranstionAction.tl_Pop || item == TLTranstionAction.tl_Dismiss){
+                tempFromController = toController
+                tempToController = fromController
+            }
+            
+            uniqueKey = TLUniqueTransitionModel(action: item, fromController: tempFromController, toController: tempToController)
+            
+            var interaction = self.interactionControllers.equalsUniqueModel(uniqueKey)
+            if interaction != nil{
+                self.interactionControllers.removeUniqueKey(uniqueKey)
+                self.interactionControllers[uniqueKey] = interactionController
+            }else{
+                self.interactionControllers[uniqueKey] = interactionController
+            }
         }
         
     }
@@ -135,11 +171,11 @@ public class TLTransitionManager: NSObject,UINavigationControllerDelegate,UITabB
         
         let keyValue = TLUniqueTransitionModel(action: .tl_Present, fromController: source.classForCoder, toController: presented.classForCoder)
         //得到动画协议的实现类
-        var animation = self.animationControllers[keyValue]
+        var animation = self.animationControllers.equalsUniqueModel(keyValue) as? TLAnimationProtocol
         
         if animation == nil{
             keyValue.toViewController = nil
-            animation = self.animationControllers[keyValue]
+            animation = self.animationControllers.equalsUniqueModel(keyValue) as? TLAnimationProtocol
         }
         if animation == nil{
            animation = self.defaultPresentDismissAnimation
@@ -169,17 +205,17 @@ public class TLTransitionManager: NSObject,UINavigationControllerDelegate,UITabB
             let childVc = presentingViewController?.childViewControllers.last
             if childVc != nil{
                 keyValue.toViewController = childVc?.classForCoder
-                animation = self.animationControllers[keyValue]
+                animation = self.animationControllers.equalsUniqueModel(keyValue) as? TLAnimationProtocol
             }
             
             if animation == nil{
-             keyValue.toViewController = nil
-                animation = self.animationControllers[keyValue]
+                keyValue.toViewController = nil
+                animation = self.animationControllers.equalsUniqueModel(keyValue) as? TLAnimationProtocol
             }
             if animation == nil{
                 keyValue.toViewController = childVc?.classForCoder
                 keyValue.fromViewController = nil
-                animation = self.animationControllers[keyValue]
+                animation = self.animationControllers.equalsUniqueModel(keyValue) as? TLAnimationProtocol
                 
             }
         }
@@ -187,7 +223,7 @@ public class TLTransitionManager: NSObject,UINavigationControllerDelegate,UITabB
         if animation == nil{
          keyValue.toViewController = nil
             keyValue.fromViewController = dismissed.classForCoder
-            animation = self.animationControllers[keyValue]
+            animation = self.animationControllers.equalsUniqueModel(keyValue) as? TLAnimationProtocol
             
         }
         
@@ -214,10 +250,10 @@ public class TLTransitionManager: NSObject,UINavigationControllerDelegate,UITabB
             if animator === value  && key.transitionAction == TLTranstionAction.tl_Present{
              
                 //获取交互手势
-                var interactionController = self.interactionControllers[key]
+                var interactionController = self.interactionControllers.equalsUniqueModel(key) as? TLTransitionInteractionProtocol
                 if interactionController == nil{
-                  key.toViewController = nil
-                    interactionController = self.interactionControllers[key]
+                    key.toViewController = nil
+                    interactionController = self.interactionControllers.equalsUniqueModel(key) as? TLTransitionInteractionProtocol
                 }
                 
                 if let interaction = interactionController where interaction.isInteractive == true{
@@ -244,10 +280,10 @@ public class TLTransitionManager: NSObject,UINavigationControllerDelegate,UITabB
             if animator === value  && key.transitionAction == TLTranstionAction.tl_Dismiss{
                 
                 //获取交互手势
-                var interactionController = self.interactionControllers[key]
+                var interactionController = self.interactionControllers.equalsUniqueModel(key) as? TLTransitionInteractionProtocol
                 if interactionController == nil{
                     key.toViewController = nil
-                    interactionController = self.interactionControllers[key]
+                    interactionController = self.interactionControllers.equalsUniqueModel(key) as? TLTransitionInteractionProtocol
                 }
                 
                 if let interaction = interactionController where interaction.isInteractive == true{
@@ -286,13 +322,29 @@ public class TLTransitionManager: NSObject,UINavigationControllerDelegate,UITabB
         
         let keyValue = TLUniqueTransitionModel(action: action, fromController: fromVC.classForCoder, toController: toVC.classForCoder)
         
-        var aniation = self.animationControllers[keyValue]
+        var aniation = self.animationControllers.equalsUniqueModel(keyValue) as? TLAnimationProtocol
+        
+        
+        if aniation == nil{
+            keyValue.toViewController = nil
+            aniation = self.animationControllers.equalsUniqueModel(keyValue) as? TLAnimationProtocol
+        }
+        
         if aniation == nil{
             keyValue.toViewController = toVC.classForCoder
             keyValue.fromViewController = nil
-            aniation = self.animationControllers[keyValue]
+            aniation = self.animationControllers.equalsUniqueModel(keyValue) as? TLAnimationProtocol
         }
         
+        //add by Andrew
+        //如果目标控制器和源头控制器都为nil,则对任何页面都起作用
+//        if aniation == nil{
+//            keyValue.fromViewController = nil
+//            keyValue.toViewController = nil
+//            aniation = self.animationControllers.equalsUniqueModel(keyValue)
+//        }
+        
+        //如果上面的控制仍然获取的animation为nil,则调用默认的动画实现
         if aniation == nil{
             aniation = self.defaultPushPopAnimation
         }
@@ -328,10 +380,10 @@ public class TLTransitionManager: NSObject,UINavigationControllerDelegate,UITabB
         
         let keyValue = TLUniqueTransitionModel(action: TLTranstionAction.tl_Tab, fromController: fromVC.classForCoder, toController: toVC.classForCoder)
         
-        var animation = self.animationControllers[keyValue]
+        var animation = self.animationControllers.equalsUniqueModel(keyValue) as? TLAnimationProtocol
         if animation == nil{
             keyValue.toViewController = nil
-            animation = self.animationControllers[keyValue]
+            animation = self.animationControllers.equalsUniqueModel(keyValue) as? TLAnimationProtocol
         }
         
         if animation == nil{
@@ -374,5 +426,31 @@ extension TLTransitionManager{
         }
         
         return arrayAction
+    }
+}
+
+
+
+extension Dictionary{
+    func equalsUniqueModel(obj:TLUniqueTransitionModel) -> AnyObject? {
+        for (key,value) in self {
+            if let model = key as? TLUniqueTransitionModel{
+                if model.isEqual(obj) == true{
+                  return value as? AnyObject
+                }
+            }
+        }
+        return nil
+    }
+    
+    
+    mutating func removeUniqueKey(obj:TLUniqueTransitionModel) -> Void {
+            for (key,value) in self {
+                if let model = key as? TLUniqueTransitionModel{
+                    if model.isEqual(obj) == true{
+                        self.removeValueForKey(key)
+                    }
+                }
+            }
     }
 }
