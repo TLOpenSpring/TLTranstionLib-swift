@@ -21,9 +21,7 @@ class TabBarControllerViewController: UITabBarController,TLTransitionInteraction
         super.viewDidLoad()
         
         initTabBarController()
-        initInteraction()
-        
-        initAnimation()
+      
     }
     
     /**
@@ -60,6 +58,10 @@ class TabBarControllerViewController: UITabBarController,TLTransitionInteraction
         vc4.tabBarItem = UITabBarItem(title: "Tab4", image: nil, tag: 3)
         
         self.setViewControllers([vc1,vc2,vc3,vc4], animated: true)
+        
+        self.delegate = TLTransitionManager.shared()
+        
+        
     }
     
     //MARK: - TLTransitionInteractionControllerDelegate

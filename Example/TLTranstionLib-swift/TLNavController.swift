@@ -13,5 +13,9 @@ class TLNavController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationItem.title = "TLNavController"
+        self.view.backgroundColor = UIColor.whiteColor()
+        
+        self.navigationController?.delegate = TLTransitionManager.shared()
     }
 }

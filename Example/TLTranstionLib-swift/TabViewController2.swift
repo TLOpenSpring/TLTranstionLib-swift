@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import TLTranstionLib_swift
 
 class TabViewController2: BaseTabController {
 
@@ -16,6 +17,13 @@ class TabViewController2: BaseTabController {
         self.navigationItem.title = "TabViewController2"
          self.tabBarItem.title = "tab2"
         self.view.backgroundColor = UIColor.brownColor()
+        
+        self.navigationController?.delegate = TLTransitionManager.shared()
+        initAnimation()
+    }
+    
+    func initAnimation() -> Void {
+        TLTransitionManager.shared().tl_setAnimation(animation: TLCardSliderAnimator(), fromViewController: self.dynamicType, toViewController: nil, action: TLTranstionAction.tl_Tab)
     }
 
  

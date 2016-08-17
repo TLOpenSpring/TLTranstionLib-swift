@@ -313,7 +313,7 @@ public class TLTransitionManager: NSObject,UINavigationControllerDelegate,UITabB
      */
     public func navigationController(navigationController: UINavigationController, interactionControllerForAnimationController animationController: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
         
-        return interactionControllerForAction(TLTranstionAction.tl_Pop, animator: animationController)
+        return interactionControllerForAction(TLTranstionAction.tl_PushPop, animator: animationController)
     }
     public func navigationController(navigationController: UINavigationController, animationControllerForOperation operation: UINavigationControllerOperation, fromViewController fromVC: UIViewController, toViewController toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         
@@ -360,7 +360,6 @@ public class TLTransitionManager: NSObject,UINavigationControllerDelegate,UITabB
     
     //MARK: - UIInteractionController Caching
     func interactionControllerForAction(action:TLTranstionAction,animator:UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
-        
         
         for (key,value) in self.interactionControllers {
             if value.action == action &&  value.isInteractive == true{

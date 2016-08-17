@@ -23,7 +23,7 @@ class TabViewController1: BaseTabController,TLTransitionInteractionControllerDel
         
         self.tabBarItem.title = "tab1"
         
-//        self.navigationController?.delegate = TLTransitionManager.shared()
+        self.navigationController?.delegate = TLTransitionManager.shared()
         
         TLTransitionManager.shared().defaultPresentDismissAnimation = TLCardAnimator()
         
@@ -56,6 +56,8 @@ class TabViewController1: BaseTabController,TLTransitionInteractionControllerDel
         TLTransitionManager.shared().tl_setAnimation(animation: TLCardAnimator(), fromViewController: self.dynamicType, action: .tl_PresentDismiss)
         
         
+        TLTransitionManager.shared().tl_setAnimation(animation: TLDivideAnimator(), fromViewController: self.dynamicType, toViewController: nil, action: TLTranstionAction.tl_Tab)
+        
     }
     
     
@@ -77,7 +79,7 @@ class TabViewController1: BaseTabController,TLTransitionInteractionControllerDel
     }
     
     func skipPush(btn:UIButton) -> Void {
-        let simple = SimpleViewController()
+        let simple = TLNavController()
         simple.transitioningDelegate = TLTransitionManager.shared()
         simple.navigationController?.delegate = TLTransitionManager.shared()
         self.navigationController?.pushViewController(simple, animated: true)
@@ -86,6 +88,7 @@ class TabViewController1: BaseTabController,TLTransitionInteractionControllerDel
     func skip(btn:UIButton) -> Void {
         let simple = SimpleViewController()
         simple.transitioningDelegate = TLTransitionManager.shared()
+        TLTransitionManager.shared().tl_setAnimation(animation: TLCardAnimator(), fromViewController: SimpleViewController.self, action: .tl_Dismiss)
         self.presentViewController(simple, animated: true, completion: nil)
     }
     //MARK: - TLTransitionInteractionControllerDelegate

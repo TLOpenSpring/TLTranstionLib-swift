@@ -11,14 +11,15 @@ import TLTranstionLib_swift
 
 
 
-class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
+class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,TLTransitionInteractionControllerDelegate {
 
     var arrayData:[String]!
     var tableView:UITableView?
     
     var screenWidth:CGFloat!
     var screenHeight:CGFloat!
-    
+    var pushPopInteractionController: TLTransitionInteractionProtocol?
+    var presentInteractionController: TLTransitionInteractionProtocol?
     
     
     override func viewDidLoad() {
@@ -47,6 +48,20 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         self.navigationItem.rightBarButtonItem = rightBarItem
         
         
+        initInteraction()
+        
+    }
+    
+    
+    /**
+     初始化手势交互
+     */
+    func initInteraction() -> Void{
+        pushPopInteractionController = TLHorizontalInteraction()
+        pushPopInteractionController?.nextControllerDelegate = self
+        pushPopInteractionController?.attachViewController(viewController: self, action: TLTranstionAction.tl_PushPop)
+        
+        TLTransitionManager.shared().tl_setInteraction(interactionController: pushPopInteractionController!, fromController: self.dynamicType, toController: nil, action: .tl_PushPop)
     }
     
     func tabbarAction(sender:UIBarButtonItem) -> Void {
@@ -158,6 +173,13 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
 
     }
   
+    
+    //MARK: - TLTransitionInteractionControllerDelegate
+    func nextViewControllerForInteractor(interactor: TLTransitionInteractionProtocol) -> UIViewController {
+        
+        let simple = SimpleViewController()
+        return simple
+    }
     
 
 }
