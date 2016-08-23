@@ -33,7 +33,7 @@ public class TLExplodeAnimator: TLBaseAnimator {
                 
                 var snapshotRegion = CGRectMake(x, y, size.width/xFactor, size.height/yFactor);
                 
-                var snapshot = fromViewSnapshot.resizableSnapshotViewFromRect(snapshotRegion, afterScreenUpdates: false, withCapInsets:UIEdgeInsetsZero)
+                var snapshot = fromViewSnapshot.resizableSnapshotViewFromRect(snapshotRegion, afterScreenUpdates: true, withCapInsets:UIEdgeInsetsZero)
                 snapshot.frame = snapshotRegion;
                 model.containerView.addSubview(snapshot)
                 snapshots.append(snapshot)

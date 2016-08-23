@@ -34,10 +34,10 @@ public class TLDivideAnimator: TLBaseAnimator {
         var topFrame = CGRectMake(0, 0, width!, position)
         var bottomFrame = CGRectMake(0, position, width!, height! - position)
         //获取上边的屏幕截图
-        let snapshotTop = baseView?.resizableSnapshotViewFromRect(topFrame, afterScreenUpdates: false, withCapInsets: UIEdgeInsetsZero)
+        let snapshotTop = baseView?.resizableSnapshotViewFromRect(topFrame, afterScreenUpdates: true, withCapInsets: UIEdgeInsetsZero)
         
         //获取下边的屏幕截图
-        let snapshotBottom = baseView?.resizableSnapshotViewFromRect(bottomFrame, afterScreenUpdates: false, withCapInsets: UIEdgeInsetsZero)
+        let snapshotBottom = baseView?.resizableSnapshotViewFromRect(bottomFrame, afterScreenUpdates: true, withCapInsets: UIEdgeInsetsZero)
         
         snapshotTop?.frame = topFrame
         snapshotBottom?.frame = bottomFrame
