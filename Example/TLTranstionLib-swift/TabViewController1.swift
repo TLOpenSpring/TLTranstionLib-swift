@@ -30,6 +30,8 @@ class TabViewController1: BaseTabController,TLTransitionInteractionControllerDel
         TLTransitionManager.shared().defaultPushPopAnimation = TLCardSliderAnimator()
         
         
+        
+        
         initView()
         initInteraction()
         
