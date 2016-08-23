@@ -116,7 +116,7 @@ public class TLFromLeftAnimator: TLBaseAnimator {
         
         
         //获取屏幕快照
-        let snapshotView = baseView?.snapshotViewAfterScreenUpdates(false)
+        let snapshotView = baseView?.snapshotViewAfterScreenUpdates(true)
         snapshotView?.frame = (baseView?.frame)!
         
 //        let maskView = UIView(frame: (snapshotView?.bounds)!)

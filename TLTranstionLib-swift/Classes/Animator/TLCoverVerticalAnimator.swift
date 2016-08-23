@@ -46,7 +46,7 @@ public class TLCoverVerticalAnimator: TLBaseAnimator {
         
         keyWindow?.backgroundColor = newColor
         //屏幕截图
-        let snapshotView = baseView?.snapshotViewAfterScreenUpdates(false)
+        let snapshotView = baseView?.snapshotViewAfterScreenUpdates(true)
         snapshotView?.frame = (baseView?.frame)!
         
         keyWindow?.addSubview(snapshotView!)

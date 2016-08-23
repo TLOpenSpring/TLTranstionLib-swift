@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = "TLTranstionLib-swift"
-  s.version          = "0.0.6"
+  s.version          = "0.0.6.1"
   s.summary          = "swift-史上最全的ViewController之间切换动画的类库，API简单易用"
 
 # This description is used to generate tags and improve search results.

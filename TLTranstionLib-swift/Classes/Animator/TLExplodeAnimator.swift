@@ -25,7 +25,7 @@ public class TLExplodeAnimator: TLBaseAnimator {
         let xFactor:CGFloat = 20
         let yFactor = xFactor * size.height / size.width;
         //开始屏幕截图
-        let fromViewSnapshot = model.fromView.snapshotViewAfterScreenUpdates(false)
+        let fromViewSnapshot = model.fromView.snapshotViewAfterScreenUpdates(true)
         
         //创建屏幕截图的每个爆炸碎片
         for (var x:CGFloat = 0; x<size.width; x=x+size.width/xFactor) {

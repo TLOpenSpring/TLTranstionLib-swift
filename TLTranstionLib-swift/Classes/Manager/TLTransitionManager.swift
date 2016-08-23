@@ -89,8 +89,8 @@ public class TLTransitionManager: NSObject,UINavigationControllerDelegate,UITabB
             var tempToController:AnyClass? = toViewController
             
             if (item == TLTranstionAction.tl_Pop || item == TLTranstionAction.tl_Dismiss){
-                tempFromController = toViewController
-                tempToController = fromViewController
+//                tempFromController = toViewController
+                tempToController = nil
             }
             
             uniqueKey = TLUniqueTransitionModel(action: item, fromController: tempFromController, toController: tempToController)
@@ -128,8 +128,7 @@ public class TLTransitionManager: NSObject,UINavigationControllerDelegate,UITabB
             var tempToController:AnyClass? = toController
             
             if (item == TLTranstionAction.tl_Pop || item == TLTranstionAction.tl_Dismiss){
-                tempFromController = toController
-                tempToController = fromController
+                tempToController = nil
             }
             
             uniqueKey = TLUniqueTransitionModel(action: item, fromController: tempFromController, toController: tempToController)
@@ -219,6 +218,8 @@ public class TLTransitionManager: NSObject,UINavigationControllerDelegate,UITabB
                 
             }
         }
+        
+         animation = self.animationControllers.equalsUniqueModel(keyValue) as? TLAnimationProtocol
         
         if animation == nil{
          keyValue.toViewController = nil
