@@ -50,18 +50,49 @@ class TabBarControllerViewController: UITabBarController,TLTransitionInteraction
         let vc3 = TabViewController3()
         let vc4 = TabViewController4()
         
+        
+        let nav1 = UINavigationController()
+        nav1.pushViewController(vc1, animated: true)
+        let nav2 = UINavigationController(rootViewController: vc2)
+        let nav3 = UINavigationController(rootViewController: vc3)
+        let nav4 = UINavigationController(rootViewController: vc4)
+        
       
         
-        vc1.tabBarItem = UITabBarItem(title: "Tab1", image: nil, tag: 0)
-        vc2.tabBarItem = UITabBarItem(title: "Tab2", image: nil, tag: 1)
-        vc3.tabBarItem = UITabBarItem(title: "Tab3", image: nil, tag: 2)
-        vc4.tabBarItem = UITabBarItem(title: "Tab4", image: nil, tag: 3)
+        let item1 = getTabItem(title: "首页", image: UIImage(named: "DT_menu1"))
+        let item2 = getTabItem(title: "效果列表", image: UIImage(named: "DT_menu2"))
+        let item3 = getTabItem(title: "Tab3", image: UIImage(named: "DT_menu3"))
+        let item4 = getTabItem(title: "Tab4", image: UIImage(named: "DT_menu4"))
         
-        self.setViewControllers([vc1,vc2,vc3,vc4], animated: true)
+        vc1.tabBarItem = item1
+        vc2.tabBarItem = item2
+        vc3.tabBarItem = item3
+        vc4.tabBarItem = item4
+        
+        self.setViewControllers([nav1,nav2,nav3,nav4], animated: true)
         
         self.delegate = TLTransitionManager.shared()
         
+        self.tabBar.barTintColor = UIColor.lightGrayColor()
+    }
+    
+    func getTabItem(title title:String,image:UIImage?) -> UITabBarItem {
+        let item = UITabBarItem(title: title, image: image, tag:0)
         
+        let font = UIFont.systemFontOfSize(12)
+        
+        let attributes = [NSForegroundColorAttributeName:UIColor.redColor(),
+                          NSFontAttributeName:font
+                          ]
+        
+        let attributesActivte = [NSForegroundColorAttributeName:UIColor.redColor(),
+                                 NSFontAttributeName:font
+                          ]
+        
+        item.setTitleTextAttributes(attributes, forState: .Normal)
+        item.setTitleTextAttributes(attributesActivte, forState: .Selected)
+    
+        return item
     }
     
     //MARK: - TLTransitionInteractionControllerDelegate

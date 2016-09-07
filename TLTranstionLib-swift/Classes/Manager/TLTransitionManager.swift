@@ -89,8 +89,8 @@ public class TLTransitionManager: NSObject,UINavigationControllerDelegate,UITabB
             var tempToController:AnyClass? = toViewController
             
             if (item == TLTranstionAction.tl_Pop || item == TLTranstionAction.tl_Dismiss){
-//                tempFromController = toViewController
-                tempToController = nil
+                tempFromController = toViewController
+                tempToController = fromViewController
             }
             
             uniqueKey = TLUniqueTransitionModel(action: item, fromController: tempFromController, toController: tempToController)
@@ -181,6 +181,7 @@ public class TLTransitionManager: NSObject,UINavigationControllerDelegate,UITabB
         }
         
         animation?.isPositiveAnimation = true
+        animation?.showType = .present
         return animation
     }
     
@@ -217,6 +218,9 @@ public class TLTransitionManager: NSObject,UINavigationControllerDelegate,UITabB
                 animation = self.animationControllers.equalsUniqueModel(keyValue) as? TLAnimationProtocol
                 
             }
+            animation?.isPositiveAnimation = false
+            animation?.showType = TLShowType.dismiss
+            return animation
         }
         
          animation = self.animationControllers.equalsUniqueModel(keyValue) as? TLAnimationProtocol
@@ -232,7 +236,8 @@ public class TLTransitionManager: NSObject,UINavigationControllerDelegate,UITabB
           animation = self.defaultPresentDismissAnimation
         }
         animation?.isPositiveAnimation = false
-        return animation!
+        animation?.showType = TLShowType.dismiss
+        return animation
         
     }
     /**
@@ -352,8 +357,10 @@ public class TLTransitionManager: NSObject,UINavigationControllerDelegate,UITabB
         
         if operation == .Push{
             aniation?.isPositiveAnimation = true
+            aniation?.showType = .push
         }else if(operation == .Pop){
             aniation?.isPositiveAnimation = false
+            aniation?.showType = .pop
         }
         return aniation
     }

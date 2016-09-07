@@ -19,6 +19,8 @@ public class TLCardSliderAnimator: NSObject,TLAnimationProtocol {
     public var isPositiveAnimation: Bool = true
     
     public var transitionTime:NSTimeInterval = 0.4
+    
+    public var showType: TLShowType = .push
     /// 默认的背景颜色
     var containerBackgroundColor:UIColor = UIColor.blackColor()
     

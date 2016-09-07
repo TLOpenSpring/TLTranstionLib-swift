@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import TLTranstionLib_swift
 
 class TLController1: BaseViewController {
 
@@ -16,6 +17,18 @@ class TLController1: BaseViewController {
         self.title="页面1";
         
         initView()
+        initAnimation()
+        
+        if self.navigationController == true{
+          hideNavView()
+        }else{
+          showNavView()
+        }
+        
+    }
+    
+    func initAnimation() -> Void {
+//        TLTransitionManager.shared().tl_setAnimation(animation: TLBaseAnimator(), fromViewController: self.dynamicType, toViewController: nil, action: .tl_PushPop)
     }
 
     

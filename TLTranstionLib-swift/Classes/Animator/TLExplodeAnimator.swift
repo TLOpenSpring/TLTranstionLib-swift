@@ -25,7 +25,15 @@ public class TLExplodeAnimator: TLBaseAnimator {
         let xFactor:CGFloat = 20
         let yFactor = xFactor * size.height / size.width;
         //开始屏幕截图
-        let fromViewSnapshot = model.fromView.snapshotViewAfterScreenUpdates(true)
+        var fromViewSnapshot : UIView!
+        
+        //如果是UINavigation的push操作
+        if self.showType == .push || showType == .pop {
+            fromViewSnapshot = model.fromView.snapshotViewAfterScreenUpdates(false)
+        }else if self.showType == .present || showType == .dismiss{
+            //那就一定是使用UIViewController的 Present方式
+            fromViewSnapshot = model.fromView.snapshotViewAfterScreenUpdates(true)
+        }
         
         //创建屏幕截图的每个爆炸碎片
         for (var x:CGFloat = 0; x<size.width; x=x+size.width/xFactor) {
@@ -33,7 +41,17 @@ public class TLExplodeAnimator: TLBaseAnimator {
                 
                 var snapshotRegion = CGRectMake(x, y, size.width/xFactor, size.height/yFactor);
                 
-                var snapshot = fromViewSnapshot.resizableSnapshotViewFromRect(snapshotRegion, afterScreenUpdates: true, withCapInsets:UIEdgeInsetsZero)
+                var flag = false
+                if self.showType == .push{
+                  flag = false
+                }else if showType == .present
+                {
+                  flag = true
+                }
+                
+                var snapshot = fromViewSnapshot.resizableSnapshotViewFromRect(snapshotRegion, afterScreenUpdates: flag, withCapInsets:UIEdgeInsetsZero)
+                
+                
                 snapshot.frame = snapshotRegion;
                 model.containerView.addSubview(snapshot)
                 snapshots.append(snapshot)

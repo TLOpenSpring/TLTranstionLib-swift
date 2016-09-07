@@ -14,7 +14,6 @@ class TabViewController4: BaseTabController {
         super.viewDidLoad()
 
         self.navigationItem.title = "TabViewController4"
-        self.tabBarItem.title = "tab4"
         self.view.backgroundColor = UIColor.darkGrayColor()
     }
 

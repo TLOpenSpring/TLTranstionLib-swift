@@ -8,10 +8,19 @@
 
 import Foundation
 import UIKit
+
+public enum TLShowType {
+    case push
+    case present
+    case dismiss
+    case pop
+}
+
 /**
  *  动画效果的协议
  */
-public protocol TLAnimationProtocol:UIViewControllerAnimatedTransitioning{
+
+ public protocol TLAnimationProtocol:UIViewControllerAnimatedTransitioning{
     
     /**
      * If the animation should be positive or negative.
@@ -20,6 +29,12 @@ public protocol TLAnimationProtocol:UIViewControllerAnimatedTransitioning{
      * @note Negative: pop / dismiss / fromBottom / toLeft
      */
     var isPositiveAnimation:Bool{
+        get
+        set
+    }
+    
+    /// push / present / pop / dismiss
+    var showType:TLShowType{
         get
         set
     }

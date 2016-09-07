@@ -33,11 +33,28 @@ public class TLDivideAnimator: TLBaseAnimator {
         let position = height!/2
         var topFrame = CGRectMake(0, 0, width!, position)
         var bottomFrame = CGRectMake(0, position, width!, height! - position)
-        //获取上边的屏幕截图
-        let snapshotTop = baseView?.resizableSnapshotViewFromRect(topFrame, afterScreenUpdates: true, withCapInsets: UIEdgeInsetsZero)
         
-        //获取下边的屏幕截图
-        let snapshotBottom = baseView?.resizableSnapshotViewFromRect(bottomFrame, afterScreenUpdates: true, withCapInsets: UIEdgeInsetsZero)
+        //屏幕截图
+        var snapshotTop : UIView?
+        
+        var snapshotBottom : UIView?
+        
+        //如果是UINavigation的push操作
+        if self.showType == .push {
+            //获取上边的屏幕截图
+            snapshotTop =  baseView?.resizableSnapshotViewFromRect(topFrame, afterScreenUpdates: false, withCapInsets: UIEdgeInsetsZero)
+            //获取下边的屏幕截图
+            snapshotBottom = baseView?.resizableSnapshotViewFromRect(bottomFrame, afterScreenUpdates: false, withCapInsets: UIEdgeInsetsZero)
+            
+        }else if self.showType == .present{
+            //那就一定是使用UIViewController的 Present方式
+            snapshotTop = baseView?.resizableSnapshotViewFromRect(topFrame, afterScreenUpdates: true, withCapInsets: UIEdgeInsetsZero)
+            
+           snapshotBottom = baseView?.resizableSnapshotViewFromRect(bottomFrame, afterScreenUpdates: true, withCapInsets: UIEdgeInsetsZero)
+        }
+        
+        
+        
         
         snapshotTop?.frame = topFrame
         snapshotBottom?.frame = bottomFrame

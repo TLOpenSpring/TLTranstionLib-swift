@@ -15,7 +15,6 @@ class TabViewController2: BaseTabController {
         super.viewDidLoad()
 
         self.navigationItem.title = "TabViewController2"
-         self.tabBarItem.title = "tab2"
         self.view.backgroundColor = UIColor.brownColor()
         
         self.navigationController?.delegate = TLTransitionManager.shared()

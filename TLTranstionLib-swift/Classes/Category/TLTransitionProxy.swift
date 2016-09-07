@@ -222,22 +222,21 @@ public class TLTransitionProxy:NSProxy,UINavigationControllerDelegate {
         
         var animatorTransition:UIViewControllerAnimatedTransitioning?
         
-        
+    
         switch operation {
         case .None:
             animatorTransition=nil
             return animatorTransition;
         default:
-            let style:TLAnmimatorStyle = navigationController.animatorStyle;
-            if(style != TLAnmimatorStyle.None){
-                let animator:TLBaseAnimator = self.TL_animatorStyle(style);
-                animator.operaiton = operation;
-                animator.animatorDuration = self.tlDuration!
-                animatorTransition=animator;
-            }else{
-                self.baseAnimator?.operaiton=operation;
-                animatorTransition = self.baseAnimator;
-            }
+           
+//                let animator:TLBaseAnimator = self.TL_animatorStyle(style);
+//                animator.operaiton = operation;
+//                animator.animatorDuration = self.tlDuration!
+//                animatorTransition=animator;
+//            }else{
+//                self.baseAnimator?.operaiton=operation;
+//                animatorTransition = self.baseAnimator;
+//            }
             break;
         }
         

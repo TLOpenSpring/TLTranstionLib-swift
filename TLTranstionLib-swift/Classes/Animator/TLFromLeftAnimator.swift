@@ -38,9 +38,9 @@ public class TLFromLeftAnimator: TLBaseAnimator {
         let model = TransitionModel(context: transitionContext)
         
         
+        print(self.operaiton)
         if(self.isPositiveAnimation == true){
             pushOpreation(model, context: transitionContext)
-            
         }else{
             popOpreation(model, context: transitionContext)
         }
@@ -82,8 +82,11 @@ public class TLFromLeftAnimator: TLBaseAnimator {
           let snapshotView = result?.snapshotView
           let maskView = snapshotView?.viewWithTag(TAGKEY)
             
-            keyWindow?.addSubview(snapshotView!)
-            keyWindow?.bringSubviewToFront(baseView!)
+            if snapshotView != nil{
+                keyWindow?.addSubview(snapshotView!)
+                keyWindow?.bringSubviewToFront(baseView!)
+            }
+            
             
             let originalFrame = baseView?.frame
             var newFrame = baseView?.frame
@@ -116,7 +119,16 @@ public class TLFromLeftAnimator: TLBaseAnimator {
         
         
         //获取屏幕快照
-        let snapshotView = baseView?.snapshotViewAfterScreenUpdates(true)
+        var snapshotView:UIView?
+        //如果是UINavigation的push操作
+        if self.showType == .push {
+            snapshotView = baseView?.snapshotViewAfterScreenUpdates(false)
+        }else if self.showType == .present{
+            //那就一定是使用UIViewController的 Present方式
+            snapshotView = baseView?.snapshotViewAfterScreenUpdates(true)
+        }
+        
+
         snapshotView?.frame = (baseView?.frame)!
         
 //        let maskView = UIView(frame: (snapshotView?.bounds)!)
@@ -125,9 +137,12 @@ public class TLFromLeftAnimator: TLBaseAnimator {
 //        snapshotView?.addSubview(maskView)
         
         
+        if snapshotView != nil{
+            keyWindow?.addSubview(snapshotView!)
+            keyWindow?.bringSubviewToFront(baseView!)
+        }
   
-        keyWindow?.addSubview(snapshotView!)
-        keyWindow?.bringSubviewToFront(baseView!)
+       
         
         
         let originalFrame = baseView?.frame

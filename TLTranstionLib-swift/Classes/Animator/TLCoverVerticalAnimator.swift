@@ -46,7 +46,16 @@ public class TLCoverVerticalAnimator: TLBaseAnimator {
         
         keyWindow?.backgroundColor = newColor
         //屏幕截图
-        let snapshotView = baseView?.snapshotViewAfterScreenUpdates(true)
+        var snapshotView :UIView?
+        
+        //如果是UINavigation的push操作
+        if self.showType == .push {
+            snapshotView = baseView?.snapshotViewAfterScreenUpdates(false)
+        }else if self.showType == .present{
+            //那就一定是使用UIViewController的 Present方式
+            snapshotView = baseView?.snapshotViewAfterScreenUpdates(true)
+        }
+        
         snapshotView?.frame = (baseView?.frame)!
         
         keyWindow?.addSubview(snapshotView!)

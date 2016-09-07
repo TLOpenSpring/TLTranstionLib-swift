@@ -17,14 +17,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
-        
-//        let nav:UINavigationController=UINavigationController(rootViewController: ViewController())
-        
-        let nav = TLTransitionNavigationController(rootViewController: ViewController())
-        self.window?.rootViewController=nav;
+        let tabVc = TabBarControllerViewController()
+        self.window?.rootViewController = tabVc
         self.window?.makeKeyAndVisible()
         
-        self.window?.frame
         
         return true
     }

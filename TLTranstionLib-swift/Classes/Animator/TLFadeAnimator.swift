@@ -22,7 +22,7 @@ public class TLFadeAnimator: TLBaseAnimator {
         if(self.isPositiveAnimation == true){
             model.containerView.addSubview(model.toView)
             model.toView.alpha=0
-            UIView.animateWithDuration(self.transitionDuration(transitionContext), animations: {
+            UIView.animateWithDuration(self.animatorDuration, animations: {
                 model.toView.alpha=1
                 }, completion: { (finished) in
                     
@@ -31,7 +31,7 @@ public class TLFadeAnimator: TLBaseAnimator {
         }else {
             model.containerView.insertSubview(model.toView, belowSubview: model.fromView)
             
-            UIView.animateWithDuration(self.transitionDuration(transitionContext), animations: {
+            UIView.animateWithDuration(self.animatorDuration, animations: {
                     model.fromView.alpha=0
                 }, completion: { (finished) in
                     

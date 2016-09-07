@@ -15,6 +15,8 @@ public class TLBaseAnimator: NSObject,TLAnimationProtocol {
     var operaiton:UINavigationControllerOperation?
     
     public var isPositiveAnimation: Bool = true
+    
+    public var showType: TLShowType = .push
    
     override public init() {
         self.operaiton = .Push;
@@ -97,6 +99,8 @@ public class TLBaseAnimator: NSObject,TLAnimationProtocol {
             var frame = model.fromView.frame
             frame.origin.x = frame.origin.x + frame.size.width
             model.fromView.frame=frame
+            
+            
             
             }) { (finished) in
                 context.completeTransition(!context.transitionWasCancelled())
