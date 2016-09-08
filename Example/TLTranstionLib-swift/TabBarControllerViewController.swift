@@ -9,7 +9,7 @@
 import UIKit
 import TLTranstionLib_swift
 
-class TabBarControllerViewController: UITabBarController,TLTransitionInteractionControllerDelegate {
+class TabBarControllerViewController: UITabBarController {
     
     
     var tlCardAnimator:TLCardAnimator!
@@ -28,19 +28,10 @@ class TabBarControllerViewController: UITabBarController,TLTransitionInteraction
      初始化手势交互
      */
     func initInteraction() -> Void{
-        pushPopInteractionController = TLHorizontalInteraction()
-        pushPopInteractionController?.nextControllerDelegate = self
-        pushPopInteractionController?.attachViewController(viewController: self, action: TLTranstionAction.tl_PushPop)
-        
-        TLTransitionManager.shared().tl_setInteraction(interactionController: pushPopInteractionController!, fromController: self.dynamicType, toController: nil, action: .tl_PushPop)
+      
     }
     
-    func initAnimation() -> Void {
-        TLTransitionManager.shared().tl_setAnimation(animation: TLCardSliderAnimator(), fromViewController: self.dynamicType, action: .tl_PushPop)
-        
-        
-        TLTransitionManager.shared().tl_setAnimation(animation: TLCardSliderAnimator(), fromViewController: self.dynamicType, action: .tl_PresentDismiss)
-    }
+ 
     
     func initTabBarController() -> Void {
         
@@ -74,6 +65,7 @@ class TabBarControllerViewController: UITabBarController,TLTransitionInteraction
         self.delegate = TLTransitionManager.shared()
         
         self.tabBar.barTintColor = UIColor.lightGrayColor()
+        self.tabBarController?.delegate = TLTransitionManager.shared()
     }
     
     func getTabItem(title title:String,image:UIImage?) -> UITabBarItem {
@@ -97,11 +89,6 @@ class TabBarControllerViewController: UITabBarController,TLTransitionInteraction
     
     //MARK: - TLTransitionInteractionControllerDelegate
     
-    func nextViewControllerForInteractor(interactor: TLTransitionInteractionProtocol) -> UIViewController {
-        
-        let simple = SimpleViewController()
-        return simple
-    }
     
   }
 

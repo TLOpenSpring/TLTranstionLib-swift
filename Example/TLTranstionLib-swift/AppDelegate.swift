@@ -9,6 +9,10 @@
 import UIKit
 import TLTranstionLib_swift
 
+let  screenWidth=UIScreen.mainScreen().bounds.width
+
+let screenHeight=UIScreen.mainScreen().bounds.height
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 

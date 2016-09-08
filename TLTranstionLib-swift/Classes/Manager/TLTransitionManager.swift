@@ -385,7 +385,15 @@ public class TLTransitionManager: NSObject,UINavigationControllerDelegate,UITabB
     
     public func tabBarController(tabBarController: UITabBarController, animationControllerForTransitionFromViewController fromVC: UIViewController, toViewController toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         
-        let keyValue = TLUniqueTransitionModel(action: TLTranstionAction.tl_Tab, fromController: fromVC.classForCoder, toController: toVC.classForCoder)
+        var fromVcs = fromVC.classForCoder
+        var fromController:UIViewController?
+        if fromVcs is UINavigationController{
+          fromController = (fromVcs as! UINavigationController).viewControllers[0]
+        }else{
+          fromController = fromVC
+        }
+        
+        let keyValue = TLUniqueTransitionModel(action: TLTranstionAction.tl_Tab, fromController: fromController!.classForCoder, toController: toVC.classForCoder)
         
         var animation = self.animationControllers.equalsUniqueModel(keyValue) as? TLAnimationProtocol
         if animation == nil{

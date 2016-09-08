@@ -19,7 +19,6 @@ class SimpleViewController: BaseTabController {
         
         initView()
         
-        //self.navigationController?.delegate = TLTransitionManager.shared()
     }
     
     func initView() -> Void {
