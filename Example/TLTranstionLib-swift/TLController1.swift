@@ -41,9 +41,7 @@ class TLController1: BaseViewController {
         
     }
     
-    override func getCurrentVC() -> UIViewController {
-        return TLController2()
-    }
+   
   
 
 }

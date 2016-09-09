@@ -24,6 +24,33 @@ public class TLDivideAnimator: TLBaseAnimator {
         
     }
     
+    
+    
+//    override func pushOperation(model: TransitionModel, context: UIViewControllerContextTransitioning) {
+//        let baseView = model.fromView.window?.subviews.first
+//        
+//        let width = baseView?.bounds.width
+//        let height = baseView?.bounds.height
+//        
+//        let originRect = model.fromView.frame
+//        
+//        var rect = model.toView.frame
+//        rect.origin.y -= height!
+//        model.toView.frame = rect
+//        
+//        
+//        
+//        model.containerView.addSubview(model.toView)
+//        
+//        UIView.animateWithDuration(1, animations: {
+//            model.toView.frame = originRect
+//            }) { (finished) in
+//                context.completeTransition(!context.transitionWasCancelled())
+//        }
+//        
+//        
+//    }
+    
     override func pushOperation(model: TransitionModel, context: UIViewControllerContextTransitioning) {
         let baseView = model.fromView.window?.subviews.first
         
@@ -60,6 +87,9 @@ public class TLDivideAnimator: TLBaseAnimator {
         snapshotBottom?.frame = bottomFrame
         baseView?.addSubview(snapshotTop!)
         baseView?.addSubview(snapshotBottom!)
+        
+        model.toView.addSubview(snapshotTop!)
+        model.toView.addSubview(snapshotBottom!)
         
         model.containerView.addSubview(model.toView)
         

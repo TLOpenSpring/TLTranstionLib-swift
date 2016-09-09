@@ -82,16 +82,25 @@ public class TLTransitionManager: NSObject,UINavigationControllerDelegate,UITabB
         //获取转换Action的集合
         let arrayActions = self.getTranstionByAction(action)
         
+        
+   
+
+        
         var uniqueKey:TLUniqueTransitionModel!
         for item in arrayActions {
             
             var tempFromController:AnyClass? = fromViewController
             var tempToController:AnyClass? = toViewController
             
-            if (item == TLTranstionAction.tl_Pop || item == TLTranstionAction.tl_Dismiss){
+            if (item == TLTranstionAction.tl_Pop ){
                 tempFromController = toViewController
                 tempToController = fromViewController
             }
+            else if item == TLTranstionAction.tl_Dismiss{
+                tempFromController = toViewController
+                tempToController = nil
+            }
+            
             
             uniqueKey = TLUniqueTransitionModel(action: item, fromController: tempFromController, toController: tempToController)
             
@@ -194,6 +203,7 @@ public class TLTransitionManager: NSObject,UINavigationControllerDelegate,UITabB
      - returns: The animator object to use when dismissing the view controller or nil if you do not want to dismiss the view controller using a custom transition.
      */
     public func animationControllerForDismissedController(dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        
         let keyValue = TLUniqueTransitionModel(action: .tl_Dismiss, fromController: dismissed.classForCoder, toController: nil)
         
         var animation:TLAnimationProtocol?
@@ -226,7 +236,12 @@ public class TLTransitionManager: NSObject,UINavigationControllerDelegate,UITabB
          animation = self.animationControllers.equalsUniqueModel(keyValue) as? TLAnimationProtocol
         
         if animation == nil{
-         keyValue.toViewController = nil
+            keyValue.toViewController = nil
+            animation = self.animationControllers.equalsUniqueModel(keyValue) as? TLAnimationProtocol
+        }
+        
+        if animation == nil{
+            keyValue.toViewController = nil
             keyValue.fromViewController = dismissed.classForCoder
             animation = self.animationControllers.equalsUniqueModel(keyValue) as? TLAnimationProtocol
             

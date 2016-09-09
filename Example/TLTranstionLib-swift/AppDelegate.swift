@@ -22,6 +22,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
         let tabVc = TabBarControllerViewController()
+        
+        let nav = UINavigationController(rootViewController: tabVc)
+        
         self.window?.rootViewController = tabVc
         self.window?.makeKeyAndVisible()
         

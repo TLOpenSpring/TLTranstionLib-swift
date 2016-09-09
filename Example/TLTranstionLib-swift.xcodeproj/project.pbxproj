@@ -9,10 +9,8 @@
 /* Begin PBXBuildFile section */
 		0D206AD0912A4A2017423DF2 /* Pods_TLTranstionLib_swift_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99056C913918EF777D36604C /* Pods_TLTranstionLib_swift_Example.framework */; };
 		491F0A951D62A79E006DEDBB /* SimpleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491F0A941D62A79E006DEDBB /* SimpleViewController.swift */; };
+		493FE4111D8288EC007F7A87 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493FE4101D8288EC007F7A87 /* TestViewController.swift */; };
 		4969797D1CE95DBD00962BA0 /* TLController1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4969797C1CE95DBD00962BA0 /* TLController1.swift */; };
-		4969797F1CE95DD500962BA0 /* TLController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4969797E1CE95DD500962BA0 /* TLController2.swift */; };
-		496979811CE95DE100962BA0 /* TLController3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496979801CE95DE100962BA0 /* TLController3.swift */; };
-		496979831CE95DED00962BA0 /* TLController4.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496979821CE95DED00962BA0 /* TLController4.swift */; };
 		496979881CE95E1800962BA0 /* 1.png in Resources */ = {isa = PBXBuildFile; fileRef = 496979841CE95E1800962BA0 /* 1.png */; };
 		496979891CE95E1800962BA0 /* 2.png in Resources */ = {isa = PBXBuildFile; fileRef = 496979851CE95E1800962BA0 /* 2.png */; };
 		4969798A1CE95E1800962BA0 /* 3.png in Resources */ = {isa = PBXBuildFile; fileRef = 496979861CE95E1800962BA0 /* 3.png */; };
@@ -50,10 +48,8 @@
 		246CE7B336F73FB83EAE9739 /* Pods-TLTranstionLib-swift_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TLTranstionLib-swift_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-TLTranstionLib-swift_Example/Pods-TLTranstionLib-swift_Example.release.xcconfig"; sourceTree = "<group>"; };
 		421553FE0EE1104B503BE8A0 /* Pods_TLTranstionLib_swift_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TLTranstionLib_swift_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		491F0A941D62A79E006DEDBB /* SimpleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleViewController.swift; sourceTree = "<group>"; };
+		493FE4101D8288EC007F7A87 /* TestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
 		4969797C1CE95DBD00962BA0 /* TLController1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TLController1.swift; sourceTree = "<group>"; };
-		4969797E1CE95DD500962BA0 /* TLController2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TLController2.swift; sourceTree = "<group>"; };
-		496979801CE95DE100962BA0 /* TLController3.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TLController3.swift; sourceTree = "<group>"; };
-		496979821CE95DED00962BA0 /* TLController4.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TLController4.swift; sourceTree = "<group>"; };
 		496979841CE95E1800962BA0 /* 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1.png; sourceTree = "<group>"; };
 		496979851CE95E1800962BA0 /* 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 2.png; sourceTree = "<group>"; };
 		496979861CE95E1800962BA0 /* 3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 3.png; sourceTree = "<group>"; };
@@ -111,11 +107,9 @@
 			isa = PBXGroup;
 			children = (
 				4969797C1CE95DBD00962BA0 /* TLController1.swift */,
-				4969797E1CE95DD500962BA0 /* TLController2.swift */,
-				496979801CE95DE100962BA0 /* TLController3.swift */,
-				496979821CE95DED00962BA0 /* TLController4.swift */,
 				4969798E1CE964B300962BA0 /* BaseViewController.swift */,
 				496BA2581D41BA4D000C0B89 /* GlobalConfig.swift */,
+				493FE4101D8288EC007F7A87 /* TestViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -439,17 +433,15 @@
 			files = (
 				496BA25C1D41DB7C000C0B89 /* TabBarControllerViewController.swift in Sources */,
 				496BA2601D41DC86000C0B89 /* TabViewController2.swift in Sources */,
-				496979811CE95DE100962BA0 /* TLController3.swift in Sources */,
-				4969797F1CE95DD500962BA0 /* TLController2.swift in Sources */,
 				491F0A951D62A79E006DEDBB /* SimpleViewController.swift in Sources */,
 				496BA2641D41DC9A000C0B89 /* TabViewController4.swift in Sources */,
 				4969797D1CE95DBD00962BA0 /* TLController1.swift in Sources */,
+				493FE4111D8288EC007F7A87 /* TestViewController.swift in Sources */,
 				496BA2591D41BA4D000C0B89 /* GlobalConfig.swift in Sources */,
 				49CAD4DF1D62EAA400076985 /* TLNavController.swift in Sources */,
 				496BA25E1D41DC76000C0B89 /* TabViewController1.swift in Sources */,
 				496BA2621D41DC91000C0B89 /* TabViewController3.swift in Sources */,
 				496BA2661D41E240000C0B89 /* BaseTabController.swift in Sources */,
-				496979831CE95DED00962BA0 /* TLController4.swift in Sources */,
 				4969798F1CE964B300962BA0 /* BaseViewController.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
 			);

@@ -14,14 +14,14 @@ class BaseViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-initNavBar()
+        initNavBar()
         hideNavView()
     }
 
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        self.navigationItem.rightBarButtonItem=UIBarButtonItem(title: "下一步", style:.Plain, target: self, action: #selector(BaseViewController.nextStep(_:)))
+//        self.navigationItem.rightBarButtonItem=UIBarButtonItem(title: "下一步", style:.Plain, target: self, action: #selector(BaseViewController.nextStep(_:)))
     }
     
     func nextStep(sender:AnyObject) -> Void {

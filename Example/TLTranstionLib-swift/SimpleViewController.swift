@@ -16,6 +16,7 @@ class SimpleViewController: BaseTabController {
         self.title = "SimpleViewController"
         
         self.view.backgroundColor = UIColor.yellowColor()
+        self.transitioningDelegate = TLTransitionManager.shared()
         
         initView()
         
@@ -31,7 +32,9 @@ class SimpleViewController: BaseTabController {
     }
     
     func returnAction() -> Void {
+        
        self.dismissViewControllerAnimated(true, completion: nil)
+        self.navigationController?.popViewControllerAnimated(true)
     }
   
 }
